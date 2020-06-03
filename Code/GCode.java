@@ -3,7 +3,6 @@ package Code;
 public class GCode implements CodeBasic{
 
     private String cat;
-    private String name;
     private boolean isMotion;
     private boolean isCoordinate;
 
@@ -11,8 +10,6 @@ public class GCode implements CodeBasic{
         cat = category.toLowerCase();
         isMotion = cat.equals("motion");
         isCoordinate = cat.equals("coordinate");
-
-        this.name = name;
     }
 
     @Override

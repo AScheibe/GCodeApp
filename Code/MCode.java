@@ -1,15 +1,12 @@
 package Code;
 
-public class MCode extends GCode{
+public class MCode implements CodeBasic{
 
     private String name;
-    private int n;
 
-    public MCode(String name, String category)
+    public MCode(String name)
     {
-        super(name, category);
         this.name = name;
-        this.n = n;
     }
 
     @Override
@@ -23,9 +20,5 @@ public class MCode extends GCode{
         // TODO Auto-generated method stub
         return null;
     }
-    
-    public int getN()
-    {
-        return n;
-    }
+
 }
