@@ -3,6 +3,7 @@ package SceneControllers;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,7 +11,7 @@ import javafx.stage.Stage;
 /**
  * Class for controllers to extend in order to get access to the primary stage
  */
-public abstract class AbstractController {
+public abstract class AbstractController implements Initializable{
     protected Stage primaryStage;
 
     /**

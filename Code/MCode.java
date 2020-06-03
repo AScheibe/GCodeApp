@@ -1,12 +1,15 @@
 package Code;
 
-public class MCode implements CodeBasic{
+public class MCode extends GCode{
 
     private String name;
+    private int n;
 
-    public MCode(String name)
+    public MCode(String name, String category)
     {
+        super(name, category);
         this.name = name;
+        this.n = n;
     }
 
     @Override
@@ -21,4 +24,8 @@ public class MCode implements CodeBasic{
         return null;
     }
     
+    public int getN()
+    {
+        return n;
+    }
 }
