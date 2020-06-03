@@ -14,16 +14,32 @@ public abstract class AbstractController {
     protected Stage primaryStage;
 
     /**
-     * Sets the primary stage.
+     * Opens the welcome stage and closes current stage
      *
      * 
-     * @param primaryStage the primary stage for the application
+     * @param currentStage current stage of the application
      */
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+    public void activateWelcomeStage(Stage currentStage) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/MainPage.fxml"));
+        Parent root = (Parent)loader.load();
+        Scene maker = new Scene(root, 640, 400);
+        Stage primaryStage = new Stage();
+        
+        primaryStage.setTitle("GCode Creator");
+        primaryStage.setScene(maker);
+        primaryStage.show();
+
+        currentStage.close();
     }
 
-    public void activateCreatorStage(Stage currentStage, String fxmlScenePath) throws IOException
+    /**
+     * Opens the creator stage and closes current stage
+     *
+     * 
+     * @param currentStage current stage of the application
+     */
+    public void activateCreatorStage(Stage currentStage) throws IOException
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Test.fxml"));
         Parent root = (Parent)loader.load();

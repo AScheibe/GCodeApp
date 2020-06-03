@@ -14,7 +14,7 @@ public class MainPage extends AbstractController{
     void Pressed(ActionEvent event) throws Exception {
         Stage stage = (Stage)MainButton.getScene().getWindow();
 
-        activateCreatorStage(stage, "/Scenes/Test.fxml");
+        activateCreatorStage(stage);
     }
 
 }

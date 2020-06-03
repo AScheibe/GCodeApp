@@ -34,9 +34,8 @@ public class Test extends AbstractController{
 
     @FXML
     void Pressed(ActionEvent event) throws Exception {
-        Stage stage = (Stage) button.getScene().getWindow();
-        changeScene(stage, "/Scenes/MainPage.fxml");
-
+        Stage currentStage = (Stage) button.getScene().getWindow();
+        activateWelcomeStage(currentStage);
     }
 
     
