@@ -18,42 +18,22 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class Test extends AbstractController {
+public class CreatorController extends AbstractController {
 
     @FXML
     private MenuBar menuBar;
-
-    @FXML
-    private Button button;
-
-    @FXML
-    private VBox Test;
-
-    @FXML
-    private Font x1;
-
-    @FXML
-    private Color x2;
-
-    @FXML
-    private Font x3;
-
-    @FXML
-    private Color x4;
-
-    @FXML
-    void Pressed(ActionEvent event) throws Exception {
-        Stage currentStage = (Stage) button.getScene().getWindow();
-
-        activateWelcomeStage(currentStage);
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && 
-                System.getProperty("os.name").startsWith("Mac")
-        );
+                System.getProperty("os.name").startsWith("Mac"));
+
+    }
+
+    
+    @FXML
+    void Pressed(ActionEvent event) throws Exception {
 
     }
 

@@ -54,11 +54,19 @@ public abstract class AbstractController implements Initializable{
         currentStage.close();
     }
 
-    public void changeScene(Stage stage, String fxml) throws Exception{
+    /**
+     * Changes the scene to the specefied fxml file
+     *
+     * 
+     * @param currentStage current stage of the application
+     * @param fxml file path for fxml file to pull from for scene design
+     */
+    public void changeScene(Stage currentStage, String fxml) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = (Parent)loader.load();
-
         Scene scene = new Scene(root, 640, 400);
-        stage.setScene(scene);
+        
+        currentStage.setScene(scene);
     }
+    
 }
