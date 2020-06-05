@@ -12,7 +12,6 @@ import javafx.stage.Stage;
  * Class for controllers to extend in order to get access to the primary stage
  */
 public abstract class AbstractController implements Initializable{
-    protected Stage primaryStage;
 
     /**
      * Opens the welcome stage and closes current stage
@@ -30,8 +29,8 @@ public abstract class AbstractController implements Initializable{
         primaryStage.setTitle("GCode Creator");
         primaryStage.setScene(maker);
         primaryStage.show();
-
         currentStage.close();
+
     }
 
     /**
@@ -42,7 +41,7 @@ public abstract class AbstractController implements Initializable{
      */
     public void activateCreatorStage(Stage currentStage) throws IOException
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Test.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Creator.fxml"));
         Parent root = (Parent)loader.load();
         Scene maker = new Scene(root, 800, 400);
         Stage creatorStage = new Stage();
@@ -52,6 +51,7 @@ public abstract class AbstractController implements Initializable{
         creatorStage.show();
 
         currentStage.close();
+
     }
 
     /**

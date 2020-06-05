@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import SceneControllers.AbstractController;
+import SceneControllers.CreatorController;
 
 public class Main extends Application {
 
@@ -15,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/MainPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Main.fxml"));
         Parent root = (Parent)loader.load();
         home = new Scene(root, 640, 400);
         

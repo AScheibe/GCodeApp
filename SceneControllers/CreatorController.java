@@ -18,7 +18,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class CreatorController extends AbstractController {
+public class CreatorController extends AbstractController{
+
+    private boolean isActive;
 
     @FXML
     private MenuBar menuBar;
@@ -28,13 +30,22 @@ public class CreatorController extends AbstractController {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && 
                 System.getProperty("os.name").startsWith("Mac"));
+        isActive = true;
 
+        runCreator();
     }
 
-    
     @FXML
     void Pressed(ActionEvent event) throws Exception {
+        System.out.println("Afds");
+        isActive = false;
+    }
+
+
+    private void runCreator(){
 
     }
+
+
 
 }
