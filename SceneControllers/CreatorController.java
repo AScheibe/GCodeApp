@@ -21,6 +21,10 @@ import javafx.stage.Window;
 public class CreatorController extends AbstractController{
 
     private boolean isActive;
+    
+
+    @FXML
+    private Button button;
 
     @FXML
     private MenuBar menuBar;
@@ -32,18 +36,13 @@ public class CreatorController extends AbstractController{
                 System.getProperty("os.name").startsWith("Mac"));
         isActive = true;
 
-        runCreator();
+        Stage stage = (Stage) button.getScene().getWindow();
+
     }
 
     @FXML
     void Pressed(ActionEvent event) throws Exception {
-        System.out.println("Afds");
-        isActive = false;
-    }
-
-
-    private void runCreator(){
-
+        Stage currentStage = (Stage) menuBar.getScene().getWindow();
     }
 
 
