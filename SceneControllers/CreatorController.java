@@ -30,7 +30,7 @@ public class CreatorController extends AbstractController {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
         setTextFile("Test.txt");
-
+        textArea.setCursor(null);
         try {
             checkFileUpdates();
         } catch (FileNotFoundException e) {
