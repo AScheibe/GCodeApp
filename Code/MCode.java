@@ -2,8 +2,9 @@ package Code;
 
 public class MCode implements CodeBasic{
 
-    private String name;
 
+    private String name;
+    
     public MCode(String name)
     {
         this.name = name;
@@ -11,8 +12,7 @@ public class MCode implements CodeBasic{
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        return null;
+        return name;
     }
 
     @Override

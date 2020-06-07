@@ -14,7 +14,7 @@ public class MainController extends AbstractController {
 
     @FXML
     private MenuBar menuBar;
-    
+
     @FXML
     private Button editFileButton;
 
@@ -27,13 +27,12 @@ public class MainController extends AbstractController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
-                System.getProperty("os.name") != null && 
-                System.getProperty("os.name").startsWith("Mac"));
+                System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
+
     }
 
     @FXML
     void editFilePressed(ActionEvent event) {
-
     }
 
     @FXML

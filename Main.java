@@ -1,12 +1,8 @@
 import javafx.application.*;
 import javafx.stage.Stage;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import SceneControllers.AbstractController;
-import SceneControllers.CreatorController;
 
 public class Main extends Application {
 

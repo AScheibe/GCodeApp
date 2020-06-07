@@ -51,7 +51,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="377.0" prefWidth="647.0" VBox.vgrow="ALWAYS">
       <children>
-            <TextArea layoutX="334.0" layoutY="8.0" prefHeight="345.0" prefWidth="300.0" />
+            <TextArea fx:id="textArea" layoutX="334.0" layoutY="8.0" prefHeight="345.0" prefWidth="300.0" />
             <Button id="button" fx:id="button" layoutX="114.0" layoutY="186.0" mnemonicParsing="false" onAction="#Pressed" text="Button" />
       </children>
     </AnchorPane>

@@ -1,5 +1,6 @@
 package SceneControllers;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,10 @@ import javafx.stage.Stage;
 
 /**
  * Class for controllers to extend in order to get access to the primary stage
- */
+ */ 
 public abstract class AbstractController implements Initializable{
-
+    protected File textFile;
+    
     /**
      * Opens the welcome stage and closes current stage
      *
@@ -30,7 +32,6 @@ public abstract class AbstractController implements Initializable{
         primaryStage.setScene(maker);
         primaryStage.show();
         currentStage.close();
-
     }
 
     /**
@@ -67,6 +68,16 @@ public abstract class AbstractController implements Initializable{
         Scene scene = new Scene(root, 640, 400);
         
         currentStage.setScene(scene);
+    }
+
+    public void setTextFile(File file)
+    {
+        textFile = file;
+    }
+
+    public void setTextFile(String filePath)
+    {
+        textFile = new File(filePath);
     }
     
 }
