@@ -36,33 +36,15 @@ public class MainController extends AbstractController {
     }
 
     @FXML
-    void editFilePressed(ActionEvent event) {
+    void editFilePressed(ActionEvent event) throws IOException {
         Stage stage = (Stage) newFileButton.getScene().getWindow();
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("Text Files", "*.txt"));
-
-        File selectedFile = fileChooser.showOpenDialog(stage);
-
-        setTextFile(selectedFile);
-
-        try {
-            activateCreatorStage(stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        activateCreatorStage(stage);
     }
 
     @FXML
-    void newFilePressed(ActionEvent event) {
-        Stage stage = (Stage) newFileButton.getScene().getWindow();
-        try {
-            activateCreatorStage(stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void newFilePressed(ActionEvent event) throws IOException {
+        //Stage stage = (Stage) newFileButton.getScene().getWindow();
+        //activateCreatorStage(stage, true);
     }
 
     @FXML

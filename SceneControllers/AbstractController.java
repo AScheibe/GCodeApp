@@ -13,8 +13,9 @@ import javafx.stage.Stage;
  * Class for controllers to extend in order to get access to the primary stage
  */ 
 public abstract class AbstractController implements Initializable{
-    protected File textFile;
-    
+    Stage currentStage;
+    boolean newStage;
+
     /**
      * Opens the welcome stage and closes current stage
      *
@@ -52,7 +53,9 @@ public abstract class AbstractController implements Initializable{
         creatorStage.show();
 
         currentStage.close();
-
+        
+        this.currentStage = creatorStage;
+        this.newStage = newStage;
     }
 
     /**
@@ -68,16 +71,6 @@ public abstract class AbstractController implements Initializable{
         Scene scene = new Scene(root, 640, 400);
         
         currentStage.setScene(scene);
-    }
-
-    public void setTextFile(File file)
-    {
-        textFile = file;
-    }
-
-    public void setTextFile(String filePath)
-    {
-        textFile = new File(filePath);
     }
     
 }
