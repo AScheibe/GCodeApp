@@ -38,12 +38,38 @@ public abstract class AbstractController implements Initializable{
     /**
      * Opens the creator stage and closes current stage
      *
+     * Runs program with existing file
      * 
      * @param currentStage current stage of the application
      */
-    public void activateCreatorStage(Stage currentStage) throws IOException
+    public void activateExistingCreatorStage(Stage currentStage) throws IOException
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Creator.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileMadeCreator.fxml"));
+        Parent root = (Parent)loader.load();
+        Scene maker = new Scene(root, 800, 400);
+        Stage creatorStage = new Stage();
+        
+        creatorStage.setTitle("GCode Creator");
+        creatorStage.setScene(maker);
+        creatorStage.show();
+
+        currentStage.close();
+        
+        this.currentStage = creatorStage;
+        this.newStage = newStage;
+    }
+
+    /**
+     * Opens the creator stage and closes current stage.
+     * 
+     * Sets up a new file
+     *
+     * 
+     * @param currentStage current stage of the application
+     */
+    public void activateNewCreatorStage(Stage currentStage) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/NewFileCreator.fxml"));
         Parent root = (Parent)loader.load();
         Scene maker = new Scene(root, 800, 400);
         Stage creatorStage = new Stage();

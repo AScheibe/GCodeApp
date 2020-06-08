@@ -16,7 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class CreatorController extends AbstractController {
+public class FileMadeCreatorController extends AbstractController {
 
 
     @FXML

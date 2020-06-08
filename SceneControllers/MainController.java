@@ -38,13 +38,14 @@ public class MainController extends AbstractController {
     @FXML
     void editFilePressed(ActionEvent event) throws IOException {
         Stage stage = (Stage) newFileButton.getScene().getWindow();
-        activateCreatorStage(stage);
+        activateExistingCreatorStage(stage);
     }
 
+    //TODO 
     @FXML
     void newFilePressed(ActionEvent event) throws IOException {
-        //Stage stage = (Stage) newFileButton.getScene().getWindow();
-        //activateCreatorStage(stage, true);
+        Stage stage = (Stage) newFileButton.getScene().getWindow();
+        activateNewCreatorStage(stage);
     }
 
     @FXML
