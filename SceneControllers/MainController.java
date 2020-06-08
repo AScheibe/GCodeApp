@@ -1,6 +1,5 @@
 package SceneControllers;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +40,7 @@ public class MainController extends AbstractController {
         activateExistingCreatorStage(stage);
     }
 
-    //TODO 
+    // TODO
     @FXML
     void newFilePressed(ActionEvent event) throws IOException {
         Stage stage = (Stage) newFileButton.getScene().getWindow();

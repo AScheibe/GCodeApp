@@ -18,7 +18,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class FileMadeCreatorController extends AbstractController {
 
-
     @FXML
     private Button button;
 
@@ -29,14 +28,14 @@ public class FileMadeCreatorController extends AbstractController {
     private TextArea textArea;
 
     private File textFile;
-    
+
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
         editFileSetUp();
-    
+
         try {
             checkFileUpdates();
         } catch (FileNotFoundException e) {
@@ -46,19 +45,17 @@ public class FileMadeCreatorController extends AbstractController {
 
     @FXML
     protected void Pressed(final ActionEvent event) throws Exception {
-        //final Stage currentStage = (Stage) menuBar.getScene().getWindow();
+        // final Stage currentStage = (Stage) menuBar.getScene().getWindow();
     }
 
     /**
      * Opens the file explorer to allow user to select a file
      */
 
-    private void editFileSetUp()
-    {
+    private void editFileSetUp() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("Text Files", "*.txt"));
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
 
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 
@@ -66,8 +63,8 @@ public class FileMadeCreatorController extends AbstractController {
     }
 
     /**
-     * Updates text area to read what the current .txt file
-     * that's being edited reads.
+     * Updates text area to read what the current .txt file that's being edited
+     * reads.
      * 
      * @throws FileNotFoundException
      */
