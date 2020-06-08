@@ -13,53 +13,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 
-public class FileMadeCreatorController extends AbstractController {
 
-    @FXML
-    private Button button;
 
-    @FXML
-    private MenuBar menuBar;
-
-    @FXML
-    private TextArea textArea;
-
-    private File textFile;
-
+public abstract class CreatorController extends AbstractController {
     @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
-        menuBar.setUseSystemMenuBar(
-                System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
+    public void initialize(URL location, ResourceBundle resources) {}
+    
+    @FXML
+    protected Button button;
 
-        editFileSetUp();
+    @FXML
+    protected MenuBar menuBar;
 
-        try {
-            checkFileUpdates();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    @FXML
+    protected TextArea textArea;
+
+    protected File textFile;
+
 
     @FXML
     protected void Pressed(final ActionEvent event) throws Exception {
         // final Stage currentStage = (Stage) menuBar.getScene().getWindow();
-    }
-
-    /**
-     * Opens the file explorer to allow user to select a file
-     */
-
-    private void editFileSetUp() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
-
-        File selectedFile = fileChooser.showOpenDialog(currentStage);
-
-        textFile = selectedFile;
     }
 
     /**
@@ -68,7 +43,7 @@ public class FileMadeCreatorController extends AbstractController {
      * 
      * @throws FileNotFoundException
      */
-    private void checkFileUpdates() throws FileNotFoundException {
+    protected void checkFileUpdates() throws FileNotFoundException {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws Exception {

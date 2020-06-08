@@ -1,6 +1,5 @@
 package SceneControllers;
 
-import java.io.File;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
@@ -13,8 +12,7 @@ import javafx.stage.Stage;
  * Class for controllers to extend in order to get access to the primary stage
  */
 public abstract class AbstractController implements Initializable {
-    Stage currentStage;
-    boolean newStage;
+    protected Stage currentStage;
 
     /**
      * Opens the welcome stage and closes current stage
@@ -41,8 +39,8 @@ public abstract class AbstractController implements Initializable {
      * 
      * @param currentStage current stage of the application
      */
-    public void activateExistingCreatorStage(Stage currentStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileMadeCreator.fxml"));
+    public void activateEditFileCreatorStage(Stage currentStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/EditFileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 400);
         Stage creatorStage = new Stage();
@@ -54,7 +52,6 @@ public abstract class AbstractController implements Initializable {
         currentStage.close();
 
         this.currentStage = creatorStage;
-        this.newStage = newStage;
     }
 
     /**
@@ -65,7 +62,7 @@ public abstract class AbstractController implements Initializable {
      * 
      * @param currentStage current stage of the application
      */
-    public void activateNewCreatorStage(Stage currentStage) throws IOException {
+    public void activateNewFileCreatorStage(Stage currentStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/NewFileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 400);
@@ -78,7 +75,6 @@ public abstract class AbstractController implements Initializable {
         currentStage.close();
 
         this.currentStage = creatorStage;
-        this.newStage = newStage;
     }
 
     /**
