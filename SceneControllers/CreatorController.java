@@ -3,6 +3,8 @@ package SceneControllers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -16,10 +18,7 @@ import javafx.scene.control.TextArea;
 
 
 
-public abstract class CreatorController extends AbstractController {
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {}
-    
+public abstract class CreatorController extends AbstractController {   
     @FXML
     protected Button button;
 
@@ -32,15 +31,21 @@ public abstract class CreatorController extends AbstractController {
     protected File textFile;
 
 
+    //TODO remove this method after testing is complete
     @FXML
     protected void Pressed(final ActionEvent event) throws Exception {
         // final Stage currentStage = (Stage) menuBar.getScene().getWindow();
+        List<Void> a = new ArrayList<Void>();
     }
 
     /**
      * Updates text area to read what the current .txt file that's being edited
      * reads.
      * 
+     * The text file is displayed in this way in order to make the text file being
+     * edited save immediately with zero doubt that whats displayed in the file
+     * is the same as what's being displayed on the screen. The individuals 
+     * this application is being made for may be very tecnologically illiterate.
      * @throws FileNotFoundException
      */
     protected void checkFileUpdates() throws FileNotFoundException {

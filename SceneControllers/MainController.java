@@ -25,6 +25,23 @@ public class MainController extends AbstractController {
     @FXML
     private Button newFileButton;
 
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     * 
+     * Sets menu bar to system default if on MacOS.
+     * 
+     * Method from interface Initalizeable. Initalizeable interface originally 
+     * implemented in "AbstractController."
+     * 
+     * @param location
+     * The location used to resolve relative paths for the root object, or
+     * <tt>null</tt> if the location is not known.
+     *
+     * @param resources
+     * The resources used to localize the root object, or <tt>null</tt> if
+     * the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(

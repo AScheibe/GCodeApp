@@ -16,7 +16,6 @@ public abstract class AbstractController implements Initializable {
 
     /**
      * Opens the welcome stage and closes current stage
-     *
      * 
      * @param currentStage current stage of the application
      */
