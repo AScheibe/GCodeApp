@@ -2,6 +2,8 @@ package SceneControllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,8 @@ public abstract class CreatorController extends AbstractController {
 
     protected File textFile;
 
-
+    protected FileWriter fileWriter;
+    
     //TODO remove this method after testing is complete
     @FXML
     protected void Pressed(final ActionEvent event) throws Exception {
@@ -98,6 +101,15 @@ public abstract class CreatorController extends AbstractController {
         Thread threadCheck = new Thread(task);
         threadCheck.setDaemon(true);
         threadCheck.start();
+    }
+
+    protected void fileWriterInit()
+    {
+        try {
+            fileWriter = new FileWriter(textFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
