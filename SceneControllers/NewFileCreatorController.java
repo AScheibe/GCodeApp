@@ -19,7 +19,7 @@ import javafx.stage.DirectoryChooser;
  * 
  * Availabale methods in extended class CreatorController: fileWriterInit(), checkFileUpdates().
 */
-public class NewFileCreatorController extends CreatorController {
+public class NewFileCreatorController extends AbstractCreatorController {
 
     FileWriter fileWriter;
 
@@ -50,8 +50,10 @@ public class NewFileCreatorController extends CreatorController {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
-        textFile = newFileSetup();
+        File textFile = newFileSetup();
 
+        setTextFile(textFile);
+        
         try {
             checkFileUpdates();
         } catch (FileNotFoundException e) {

@@ -20,7 +20,7 @@ import javafx.scene.control.TextArea;
 
 
 
-public abstract class CreatorController extends AbstractController {   
+public abstract class AbstractCreatorController extends AbstractController {   
     @FXML
     protected Button button;
 
@@ -30,9 +30,9 @@ public abstract class CreatorController extends AbstractController {
     @FXML
     protected TextArea textArea;
 
-    protected File textFile;
 
-    protected FileWriter fileWriter;
+    private File textFile;
+    private FileWriter fileWriter;
     
     //TODO remove this method after testing is complete
     @FXML
@@ -41,6 +41,11 @@ public abstract class CreatorController extends AbstractController {
         List<Void> a = new ArrayList<Void>();
     }
 
+    protected void setTextFile(File textFile)
+    {
+        this.textFile = textFile;
+    }
+    
     /**
      * Updates text area to read what the current .txt file that's being edited
      * reads.

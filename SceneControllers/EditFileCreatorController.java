@@ -15,7 +15,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
  * 
  * Availabale methods in CreatorController: fileWriterInit(), checkFileUpdates().
  */
-public class EditFileCreatorController extends CreatorController {
+public class EditFileCreatorController extends AbstractCreatorController {
 
     private FileWriter fileWriter;
 
@@ -44,7 +44,8 @@ public class EditFileCreatorController extends CreatorController {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
-        textFile = editFileSetUp();
+        File textFile = editFileSetUp();
+        setTextFile(textFile);
 
         try {
             fileWriterInit();
