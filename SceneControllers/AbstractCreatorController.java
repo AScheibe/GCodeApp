@@ -18,7 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 
-
+import Code.*;
 
 public abstract class AbstractCreatorController extends AbstractController {   
     @FXML
@@ -30,8 +30,8 @@ public abstract class AbstractCreatorController extends AbstractController {
     @FXML
     protected TextArea textArea;
 
-
     private File textFile;
+
     private FileWriter fileWriter;
     
     //TODO remove this method after testing is complete
@@ -45,7 +45,16 @@ public abstract class AbstractCreatorController extends AbstractController {
     {
         this.textFile = textFile;
     }
-    
+
+    protected void fileWriterInit()
+    {
+        try {
+            fileWriter = new FileWriter(textFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Updates text area to read what the current .txt file that's being edited
      * reads.
@@ -108,13 +117,12 @@ public abstract class AbstractCreatorController extends AbstractController {
         threadCheck.start();
     }
 
-    protected void fileWriterInit()
+    private void writeCode(CodeBasic code)
     {
         try {
-            fileWriter = new FileWriter(textFile);
+            fileWriter.write(code.getAction());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }
