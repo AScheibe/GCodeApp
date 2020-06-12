@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import javafx.application.Platform;
@@ -39,6 +37,7 @@ public abstract class AbstractCreatorController extends AbstractController {
     protected void Pressed(final ActionEvent event) throws Exception {
         // final Stage currentStage = (Stage) menuBar.getScene().getWindow();
         List<Void> a = new ArrayList<Void>();
+        writeCode(GCodes.G1);
     }
 
     protected void setTextFile(File textFile)
@@ -116,7 +115,11 @@ public abstract class AbstractCreatorController extends AbstractController {
         threadCheck.setDaemon(true);
         threadCheck.start();
     }
-
+    /**
+     * Writes the action of a code to the file. Called when
+     * the GCode and MCode buttons are pressed. 
+     * @param code 
+     */
     private void writeCode(CodeBasic code)
     {
         try {
@@ -124,5 +127,5 @@ public abstract class AbstractCreatorController extends AbstractController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }                                                
 }

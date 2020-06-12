@@ -2,8 +2,6 @@ package SceneControllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,9 +14,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
  * Availabale methods in CreatorController: fileWriterInit(), checkFileUpdates().
  */
 public class EditFileCreatorController extends AbstractCreatorController {
-
-    private FileWriter fileWriter;
-
     /**
      * Called to initialize a controller after its root element has been completely
      * processed.

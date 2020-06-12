@@ -1,11 +1,11 @@
 package Code;
 
-public class MCode implements CodeBasic{
-
+public enum MCodes implements CodeBasic{
+    M1("M1"), M2("M2"), M3("M3");
 
     private String name;
-    
-    public MCode(String name)
+
+    private MCodes(String name)
     {
         this.name = name;
     }
