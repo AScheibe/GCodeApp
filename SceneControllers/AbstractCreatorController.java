@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import javafx.application.Platform;
@@ -36,17 +34,14 @@ public abstract class AbstractCreatorController extends AbstractController {
     @FXML
     protected void Pressed(final ActionEvent event) throws Exception {
         // final Stage currentStage = (Stage) menuBar.getScene().getWindow();
-        List<Void> a = new ArrayList<Void>();
         writeCode(GCodes.G1);
     }
 
-    protected void setTextFile(File textFile)
-    {
+    protected final void setTextFile(File textFile){
         this.textFile = textFile;
     }
 
-    protected void fileWriterInit()
-    {
+    protected final void fileWriterInit(){
         try {
             fileWriter = new FileWriter(textFile);
         } catch (IOException e) {
@@ -64,7 +59,7 @@ public abstract class AbstractCreatorController extends AbstractController {
      * this application is being made for may be very tecnologically illiterate.
      * @throws FileNotFoundException
      */
-    protected void checkFileUpdates() throws FileNotFoundException {
+    protected final void checkFileUpdates() throws FileNotFoundException {
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws Exception {
@@ -120,8 +115,7 @@ public abstract class AbstractCreatorController extends AbstractController {
      * the GCode and MCode buttons are pressed. 
      * @param code 
      */
-    private void writeCode(CodeBasic code)
-    {
+    private final void writeCode(CodeBasic code){
         try {
             fileWriter.write(code.getAction());
         } catch (IOException e) {
