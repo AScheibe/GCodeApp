@@ -14,7 +14,6 @@ public class Main extends Application {
     }
 
     /**
-     * alex test
      * The main entry point for all JavaFX applications.
      * The start method is called after the init method has returned,
      * and after the system is ready for the application to begin running.

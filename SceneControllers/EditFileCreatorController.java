@@ -40,14 +40,8 @@ public class EditFileCreatorController extends AbstractCreatorController {
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
         File textFile = editFileSetUp();
-        setTextFile(textFile);
-
-        try {
-            fileWriterInit();
-            checkFileUpdates();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        setTextFile(textFile);  
+        setTextArea();
     }
 
     /**

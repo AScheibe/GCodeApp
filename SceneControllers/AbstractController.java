@@ -19,8 +19,8 @@ public abstract class AbstractController implements Initializable {
      * 
      * @param currentStage current stage of the application
      */
-    public void activateWelcomeStage(Stage currentStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/MainPage.fxml"));
+    public void activateMainStage(Stage currentStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Main.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 640, 400);
         Stage primaryStage = new Stage();

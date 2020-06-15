@@ -18,7 +18,7 @@ public enum GCodes implements CodeBasic{
     @Override
     public String getAction() {
         // TODO Auto-generated method stub
-        return null;
+        return "jkl";
     }
 
 }
