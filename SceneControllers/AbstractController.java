@@ -2,18 +2,24 @@ package SceneControllers;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 
 /**
  * Class for controllers to extend in order to get access to the primary stage
  */
 public abstract class AbstractController implements Initializable {
-    protected Stage currentStage;
 
+
+    @FXML
+    protected MenuBar menuBar;
+    
+    protected Stage currentStage;
     /**
      * Opens the welcome stage and closes current stage
      * 
@@ -28,7 +34,8 @@ public abstract class AbstractController implements Initializable {
         primaryStage.setTitle("GCode Creator");
         primaryStage.setScene(maker);
         primaryStage.show();
-        currentStage.close();
+
+        currentStage = primaryStage;
     }
 
     /**
@@ -49,8 +56,8 @@ public abstract class AbstractController implements Initializable {
         creatorStage.show();
 
         currentStage.close();
-
-        this.currentStage = creatorStage;
+        
+        currentStage = creatorStage;
     }
 
     /**
@@ -72,8 +79,7 @@ public abstract class AbstractController implements Initializable {
         creatorStage.show();
 
         currentStage.close();
-
-        this.currentStage = creatorStage;
+        currentStage = creatorStage;
     }
 
     /**
@@ -90,5 +96,6 @@ public abstract class AbstractController implements Initializable {
 
         currentStage.setScene(scene);
     }
+
 
 }

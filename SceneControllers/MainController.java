@@ -46,7 +46,6 @@ public class MainController extends AbstractController {
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
-
     }
 
     /**

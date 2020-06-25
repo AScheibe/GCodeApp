@@ -22,9 +22,6 @@ public abstract class AbstractCreatorController extends AbstractController {
     protected Button button;
 
     @FXML
-    protected MenuBar menuBar;
-
-    @FXML
     protected TextArea textArea;
 
     @FXML
@@ -40,7 +37,7 @@ public abstract class AbstractCreatorController extends AbstractController {
         System.out.println("test");
 
         Stage currentStage = (Stage) menuBar.getScene().getWindow();
-
+        
         try {
             activateMainStage(currentStage);
         } catch (IOException e) {
@@ -112,7 +109,7 @@ public abstract class AbstractCreatorController extends AbstractController {
      * is the same as what's being displayed on the screen. The individuals 
      * this application is being made for may be very tecnologically illiterate.
      * @throws FileNotFoundException
-     */
+     
     protected final void checkFileUpdates() throws FileNotFoundException {
         Task<Void> task = new Task<Void>() {
             @Override
@@ -164,6 +161,8 @@ public abstract class AbstractCreatorController extends AbstractController {
         threadCheck.setDaemon(true);
         threadCheck.start();
     }
+    */   
+    
     
     /**
      * Writes the action of a code to the file. Called when the GCode and MCode
