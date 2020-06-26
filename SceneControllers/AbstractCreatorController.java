@@ -45,7 +45,7 @@ public abstract class AbstractCreatorController extends AbstractController {
         }
     }
 
-    //TODO remove this method after testing is complete
+
     @FXML
     protected void Pressed(final ActionEvent event) throws Exception {
         // final Stage currentStage = (Stage) menuBar.getScene().getWindow();
