@@ -1,5 +1,6 @@
 package SceneControllers;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ public abstract class AbstractController implements Initializable {
     protected MenuBar menuBar;
     
     protected Stage currentStage;
+    
     /**
      * Opens the welcome stage and closes current stage
      * 
@@ -39,28 +41,6 @@ public abstract class AbstractController implements Initializable {
     }
 
     /**
-     * Opens the creator stage and closes current stage
-     *
-     * Runs program with existing file
-     * 
-     * @param currentStage current stage of the application
-     */
-    public void activateEditFileCreatorStage(Stage currentStage) throws IOException {
-        currentStage.close();
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/EditFileCreator.fxml"));
-        Parent root = (Parent) loader.load();
-        Scene maker = new Scene(root, 800, 400);
-        Stage creatorStage = new Stage();
-
-        creatorStage.setTitle("GCode Creator");
-        creatorStage.setScene(maker);
-        creatorStage.show();
-        
-        currentStage = creatorStage;
-    }
-
-    /**
      * Opens the creator stage and closes current stage.
      * 
      * Sets up a new file
@@ -68,10 +48,10 @@ public abstract class AbstractController implements Initializable {
      * 
      * @param currentStage current stage of the application
      */
-    public void activateNewFileCreatorStage(Stage currentStage) throws IOException {
+    public void activateCreatorController(Stage currentStage) throws IOException {
         currentStage.close();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/NewFileCreator.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 400);
         Stage creatorStage = new Stage();
@@ -107,5 +87,4 @@ public abstract class AbstractController implements Initializable {
     public void readPreferences()
     {
     }
-
 }

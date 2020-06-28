@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import javafx.application.ConditionalFeature;
@@ -29,8 +31,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import Code.*;
+import Util.TextFileManager;
 
-public abstract class AbstractCreatorController extends AbstractController {
+public class CreatorController extends AbstractController {
     @FXML
     protected MenuBar menuBar;
 
@@ -58,11 +61,20 @@ public abstract class AbstractCreatorController extends AbstractController {
     @FXML
     protected Button four;
 
-    private File textFile;
-
     private PrintWriter printWriter;
 
     private List<Button> buttonList;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        menuBar.setUseSystemMenuBar(
+                System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
+
+
+        setTextArea();
+        setButtonList();
+        setSearchListener();
+    }
 
     /**
      * TODO: Sets up the ability for the search bar to detect input and organizes
@@ -77,7 +89,8 @@ public abstract class AbstractCreatorController extends AbstractController {
             public void changed(ObservableValue ov, String t, String t1) {
 
                 if (!(searchBar.getText().equals(" ") || searchBar.getText().equals("")
-                        || searchBar.getText().substring(0).contains("  ") && searchBar.getText().substring(0, 1).equals(" "))){
+                        || searchBar.getText().substring(0).contains("  ")
+                                && searchBar.getText().substring(0, 1).equals(" "))) {
 
                     System.out.println("Searching...");
 
@@ -117,15 +130,6 @@ public abstract class AbstractCreatorController extends AbstractController {
     }
 
     /**
-     * Sets the text file that is to be edited.
-     * 
-     * @param textFile
-     */
-    protected final void setTextFile(File textFile) {
-        this.textFile = textFile;
-    }
-
-    /**
      * Sets up the text area of the editior scene to display what is currently held
      * in the text file upon start up.
      * 
@@ -136,14 +140,22 @@ public abstract class AbstractCreatorController extends AbstractController {
 
         Scanner fileScanner;
 
+        File textFile = TextFileManager.getTextFile();
+
         try {
             fileScanner = new Scanner(textFile);
+
             while (fileScanner.hasNextLine()) {
                 textToCheck += fileScanner.nextLine();
             }
             fileScanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            try {
+                activateMainStage(currentStage);
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
 
         try {
