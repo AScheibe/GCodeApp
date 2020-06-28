@@ -57,6 +57,7 @@ public class NewFileCreatorController extends AbstractCreatorController {
         setTextFile(textFile);
 
         setTextArea();
+        setSearchListener();
     }
 
     /**

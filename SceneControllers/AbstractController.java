@@ -46,6 +46,8 @@ public abstract class AbstractController implements Initializable {
      * @param currentStage current stage of the application
      */
     public void activateEditFileCreatorStage(Stage currentStage) throws IOException {
+        currentStage.close();
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/EditFileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 400);
@@ -54,8 +56,6 @@ public abstract class AbstractController implements Initializable {
         creatorStage.setTitle("GCode Creator");
         creatorStage.setScene(maker);
         creatorStage.show();
-
-        currentStage.close();
         
         currentStage = creatorStage;
     }
@@ -69,6 +69,8 @@ public abstract class AbstractController implements Initializable {
      * @param currentStage current stage of the application
      */
     public void activateNewFileCreatorStage(Stage currentStage) throws IOException {
+        currentStage.close();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/NewFileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 400);
@@ -78,7 +80,6 @@ public abstract class AbstractController implements Initializable {
         creatorStage.setScene(maker);
         creatorStage.show();
 
-        currentStage.close();
         currentStage = creatorStage;
     }
 
@@ -97,5 +98,14 @@ public abstract class AbstractController implements Initializable {
         currentStage.setScene(scene);
     }
 
+    //TODO set up sylesheet selection
+    public void setStyleSheet(Stage currentStage)
+    {
+    }
+
+    //TODO set up preferences reading
+    public void readPreferences()
+    {
+    }
 
 }
