@@ -30,7 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import Code.*;
 
-public abstract class AbstractCreatorController extends AbstractController {   
+public abstract class AbstractCreatorController extends AbstractController {
     @FXML
     protected MenuBar menuBar;
 
@@ -65,35 +65,45 @@ public abstract class AbstractCreatorController extends AbstractController {
     private List<Button> buttonList;
 
     /**
-     * TODO: Sets up the ability for the search bar to detect input and 
-     * organizes buttons in alphabetical order. 
+     * TODO: Sets up the ability for the search bar to detect input and organizes
+     * buttons in alphabetical order.
      * 
      * 
      * 
      */
-    protected void setSearchListener(){
+    protected void setSearchListener() {
         searchBar.textProperty().addListener(new ChangeListener<String>() {
-            @Override 
-            public void changed(ObservableValue ov, String t, String t1) {                
-                System.out.println("Searching...");
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
 
-                buttonsPane.setVisible(false);
-                resultsPane.setVisible(true);
+                if (!(searchBar.getText().equals(" ") || searchBar.getText().equals("")
+                        || searchBar.getText().substring(0).contains("  ") && searchBar.getText().substring(0, 1).equals(" "))){
 
-                GridPane grid = new GridPane();
+                    System.out.println("Searching...");
 
-                for(int i = 0; i < buttonList.size(); i++){
-                    if(buttonList.get(i).getText().contains(searchBar.getText())){
-                        grid.add(buttonList.get(i), 0, i);
+                    buttonsPane.setVisible(false);
+                    resultsPane.setVisible(true);
+
+                    GridPane grid = new GridPane();
+
+                    for (int i = 0; i < buttonList.size(); i++) {
+                        if (buttonList.get(i).getText().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+                            grid.add(buttonList.get(i), 0, i);
+                        }
                     }
+
+                    resultsPane.setContent(grid);
                 }
 
-                resultsPane.setContent(grid);
-            }    
+                else {
+                    resultsPane.setVisible(false);
+                    buttonsPane.setVisible(true);
+                }
+            }
         });
     }
 
-    protected final void setButtonList(){
+    protected final void setButtonList() {
 
         buttonList = new ArrayList<Button>();
 
@@ -105,24 +115,22 @@ public abstract class AbstractCreatorController extends AbstractController {
         buttonList.add(three);
         buttonList.add(four);
     }
-    
 
     /**
      * Sets the text file that is to be edited.
      * 
      * @param textFile
      */
-    protected final void setTextFile(File textFile){
+    protected final void setTextFile(File textFile) {
         this.textFile = textFile;
     }
 
     /**
-     * Sets up the text area of the editior scene to display what is currently
-     * held in the text file upon start up.
+     * Sets up the text area of the editior scene to display what is currently held
+     * in the text file upon start up.
      * 
      */
-    protected final void setTextArea()
-    {
+    protected final void setTextArea() {
         String textToCheck = "";
         String originalText = "";
 
@@ -152,10 +160,11 @@ public abstract class AbstractCreatorController extends AbstractController {
             }
 
             fileScanner.close();
-        } catch (FileNotFoundException e) { e.printStackTrace();}
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-    
-    
+
     /**
      * Writes the action of a code to the file. Called when the GCode and MCode
      * buttons are pressed.
@@ -168,7 +177,6 @@ public abstract class AbstractCreatorController extends AbstractController {
         text += "\n" + code.getAction();
         textArea.setText(text);
     }
-    
 
     /**
      * NOT USED
@@ -177,61 +185,39 @@ public abstract class AbstractCreatorController extends AbstractController {
      * reads.
      * 
      * The text file is displayed in this way in order to make the text file being
-     * edited save immediately with zero doubt that whats displayed in the file
-     * is the same as what's being displayed on the screen. The individuals 
-     * this application is being made for may be very tecnologically illiterate.
+     * edited save immediately with zero doubt that whats displayed in the file is
+     * the same as what's being displayed on the screen. The individuals this
+     * application is being made for may be very tecnologically illiterate.
+     * 
      * @throws FileNotFoundException
-     
-    protected final void checkFileUpdates() throws FileNotFoundException {
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws Exception {
-                while (true) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            String textToCheck = "";
-                            String originalText = "";
-
-                            Scanner fileScanner;
-
-                            try {
-                                fileScanner = new Scanner(textFile);
-                                while (fileScanner.hasNextLine()) {
-                                    textToCheck += fileScanner.nextLine();
-                                }
-                                fileScanner.close();
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            }
-
-                            try {
-                                fileScanner = new Scanner(textFile);
-                                if (!textToCheck.equals(originalText)) {
-                                    textArea.setText("");
-                                    while (fileScanner.hasNextLine()) {
-                                        String currentText = textArea.getText();
-                                        String line = fileScanner.nextLine();
-
-                                        textArea.setText(currentText += line + "\n");
-                                        originalText += line;
-                                    }
-                                }
-
-                                fileScanner.close();
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    Thread.sleep(25);
-                }
-            }
-        };
-
-        Thread threadCheck = new Thread(task);
-        threadCheck.setDaemon(true);
-        threadCheck.start();
-    }
-    */   
+     * 
+     *                               protected final void checkFileUpdates() throws
+     *                               FileNotFoundException { Task<Void> task = new
+     *                               Task<Void>() {
+     * @Override public Void call() throws Exception { while (true) {
+     *           Platform.runLater(new Runnable() {
+     * @Override public void run() { String textToCheck = ""; String originalText =
+     *           "";
+     * 
+     *           Scanner fileScanner;
+     * 
+     *           try { fileScanner = new Scanner(textFile); while
+     *           (fileScanner.hasNextLine()) { textToCheck +=
+     *           fileScanner.nextLine(); } fileScanner.close(); } catch
+     *           (FileNotFoundException e) { e.printStackTrace(); }
+     * 
+     *           try { fileScanner = new Scanner(textFile); if
+     *           (!textToCheck.equals(originalText)) { textArea.setText(""); while
+     *           (fileScanner.hasNextLine()) { String currentText =
+     *           textArea.getText(); String line = fileScanner.nextLine();
+     * 
+     *           textArea.setText(currentText += line + "\n"); originalText += line;
+     *           } }
+     * 
+     *           fileScanner.close(); } catch (FileNotFoundException e) {
+     *           e.printStackTrace(); } } }); Thread.sleep(25); } } };
+     * 
+     *           Thread threadCheck = new Thread(task); threadCheck.setDaemon(true);
+     *           threadCheck.start(); }
+     */
 }
