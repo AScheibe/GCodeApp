@@ -3,33 +3,21 @@ package SceneControllers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import javafx.application.ConditionalFeature;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import Code.*;
 import Util.TextFileManager;
 
@@ -61,15 +49,12 @@ public class CreatorController extends AbstractController {
     @FXML
     protected Button four;
 
-    private PrintWriter printWriter;
-
     private List<Button> buttonList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
-
 
         setTextArea();
         setButtonList();
@@ -84,34 +69,30 @@ public class CreatorController extends AbstractController {
      * 
      */
     protected void setSearchListener() {
-        searchBar.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue ov, String t, String t1) {
+        searchBar.textProperty().addListener((ChangeListener<String>) (ov, t, t1) -> {
+            if (!(searchBar.getText().equals(" ") || searchBar.getText().equals("")
+                    || searchBar.getText().substring(0).contains("  ")
+                            && searchBar.getText().substring(0, 1).equals(" "))) {
 
-                if (!(searchBar.getText().equals(" ") || searchBar.getText().equals("")
-                        || searchBar.getText().substring(0).contains("  ")
-                                && searchBar.getText().substring(0, 1).equals(" "))) {
+                System.out.println("Searching...");
 
-                    System.out.println("Searching...");
+                buttonsPane.setVisible(false);
+                resultsPane.setVisible(true);
 
-                    buttonsPane.setVisible(false);
-                    resultsPane.setVisible(true);
+                GridPane grid = new GridPane();
 
-                    GridPane grid = new GridPane();
-
-                    for (int i = 0; i < buttonList.size(); i++) {
-                        if (buttonList.get(i).getText().toLowerCase().contains(searchBar.getText().toLowerCase())) {
-                            grid.add(buttonList.get(i), 0, i);
-                        }
+                for (int i = 0; i < buttonList.size(); i++) {
+                    if (buttonList.get(i).getText().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+                        grid.add(buttonList.get(i), 0, i);
                     }
-
-                    resultsPane.setContent(grid);
                 }
 
-                else {
-                    resultsPane.setVisible(false);
-                    buttonsPane.setVisible(true);
-                }
+                resultsPane.setContent(grid);
+            }
+
+            else {
+                resultsPane.setVisible(false);
+                buttonsPane.setVisible(true);
             }
         });
     }
