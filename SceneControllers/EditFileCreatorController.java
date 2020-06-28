@@ -41,8 +41,11 @@ public class EditFileCreatorController extends AbstractCreatorController {
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
         File textFile = editFileSetUp();
-        setTextFile(textFile);  
+        setTextFile(textFile);
+          
         setTextArea();
+        setButtonList();
+        setSearchListener();
     }
 
     /**

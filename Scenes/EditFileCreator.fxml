@@ -71,10 +71,10 @@
                                  <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0">
                                        <children>
-                                          <Button layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="115.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                          <Button fx:id="one" layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                          <Button fx:id="two" layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                          <Button fx:id="three" layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                          <Button fx:id="four" layoutY="115.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
                                           <Button layoutX="-7.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
                                           <Button layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
                                           <Button layoutX="-7.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
@@ -143,10 +143,10 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="66.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="99.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                              <Button layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                              <Button layoutY="78.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                              <Button layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                              <Button layoutY="132.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
                               <Button layoutX="26.0" layoutY="530.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="157.0" text="View Preview" />
                            </children>
                         </AnchorPane>
