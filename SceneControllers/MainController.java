@@ -18,7 +18,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-
 public class MainController extends AbstractController {
 
     @FXML
@@ -34,29 +33,27 @@ public class MainController extends AbstractController {
     private Button newFileButton;
 
     private File file;
+
     /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
+     * Called to initialize a controller after its root element has been completely
+     * processed.
      * 
      * Sets menu bar to system default if on MacOS.
      * 
-     * Method from interface Initalizeable. Initalizeable interface originally 
+     * Method from interface Initalizeable. Initalizeable interface originally
      * implemented in "AbstractController."
      * 
-     * @param location
-     * The location used to resolve relative paths for the root object, or
-     * <tt>null</tt> if the location is not known.
+     * @param location  The location used to resolve relative paths for the root
+     *                  object, or <tt>null</tt> if the location is not known.
      *
-     * @param resources
-     * The resources used to localize the root object, or <tt>null</tt> if
-     * the root object was not localized.
+     * @param resources The resources used to localize the root object, or
+     *                  <tt>null</tt> if the root object was not localized.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
-        
     }
 
     /**
@@ -90,12 +87,11 @@ public class MainController extends AbstractController {
         activateCreatorController(stage);
     }
 
-    //TODO
+    // TODO
     @FXML
     void tutorialPressed(ActionEvent event) {
 
     }
-
 
     /**
      * Creates and places a new file through user input and the selection of a

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="606.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.CreatorController">
+<VBox alignment="TOP_CENTER" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.CreatorController">
   <children>
     <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
       <menus>
@@ -58,114 +59,128 @@
         </Menu>
       </menus>
     </MenuBar>
-      <SplitPane dividerPositions="0.4200913242009132" prefHeight="580.0" prefWidth="572.0">
+      <SplitPane dividerPositions="0.4933862433862434" prefHeight="526.0" prefWidth="843.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="578.0" prefWidth="257.0">
-               <children>
-                  <TextField fx:id="searchBar" layoutX="51.0" layoutY="14.0" prefHeight="37.0" prefWidth="170.0" promptText="Search" />
-                  <Accordion fx:id="buttonsPane" layoutX="3.0" layoutY="58.0" prefHeight="474.0" prefWidth="266.0">
-                    <panes>
-                      <TitledPane animated="false" prefHeight="160.0" prefWidth="78.0" text="untitled 1">
-                           <content>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+            <ScrollPane>
+               <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="526.0" prefWidth="340.0">
+                     <children>
+                        <TextField fx:id="searchBar" layoutX="101.0" layoutY="14.0" prefHeight="37.0" prefWidth="170.0" promptText="Search" />
+                        <Accordion fx:id="buttonsPane" layoutY="55.0" prefHeight="474.0" prefWidth="375.0" AnchorPane.leftAnchor="0.0">
+                          <panes>
+                            <TitledPane animated="false" prefHeight="160.0" prefWidth="78.0" text="untitled 1">
                                  <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0">
-                                       <children>
-                                          <Button fx:id="one" layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button fx:id="two" layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button fx:id="three" layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button fx:id="four" layoutY="115.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="162.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="216.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="297.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                       </children>
-                                    </AnchorPane>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                                       <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="359.0">
+                                             <children>
+                                                <Button fx:id="one" layoutX="80.0" layoutY="216.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button fx:id="two" layoutX="80.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button fx:id="three" layoutX="80.0" layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button fx:id="four" layoutX="80.0" layoutY="81.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="135.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="54.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="108.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="162.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="296.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="80.0" layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
                                  </content>
-                              </ScrollPane>
-                           </content>
-                      </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" text="untitled 1">
-                           <content>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                            </TitledPane>
+                              <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" text="untitled 1">
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0">
-                                       <children>
-                                          <Button layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="162.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="216.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="297.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                       </children>
-                                    </AnchorPane>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0">
+                                             <children>
+                                                <Button layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="-7.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="-7.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="162.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="216.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="297.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
                                  </content>
-                              </ScrollPane>
-                           </content>
+                              </TitledPane>
+                              <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" text="untitled 1">
+                                 <content>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="438.0" prefWidth="264.0" vbarPolicy="ALWAYS">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0">
+                                             <children>
+                                                <Button layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="-7.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutX="-7.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="162.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="216.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="297.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                                <Button layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </content>
+                              </TitledPane>
+                          </panes>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Accordion>
+                        <TitledPane fx:id="resultsPane" alignment="CENTER" animated="false" blendMode="DARKEN" collapsible="false" layoutX="85.0" layoutY="55.0" prefHeight="238.0" prefWidth="202.0" text="Results..." visible="false">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                    <Button layoutY="78.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                    <Button layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                    <Button layoutY="132.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
+                                    <Button layoutX="26.0" layoutY="530.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="157.0" text="View Preview" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" text="untitled 1">
-                           <content>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0">
-                                       <children>
-                                          <Button layoutY="257.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="284.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="311.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="189.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutX="-7.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="162.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="216.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="297.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="243.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                          <Button layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                           </content>
-                        </TitledPane>
-                    </panes>
-                  </Accordion>
-                  <TitledPane fx:id="resultsPane" alignment="CENTER" animated="false" collapsible="false" layoutX="35.0" layoutY="51.0" prefHeight="432.0" prefWidth="202.0" text="Results..." visible="false">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Button layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="78.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="132.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutX="26.0" layoutY="530.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="157.0" text="View Preview" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </TitledPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="452.0" prefWidth="263.0">
-            <children>
-                  <TextArea fx:id="textArea" editable="false" layoutX="16.0" layoutY="5.0" prefHeight="563.0" prefWidth="345.0">
-                     <effect>
-                        <InnerShadow />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="NONE" />
-                     </cursor>
-                  </TextArea>
-            </children>
-          </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <ScrollPane prefHeight="558.0" prefWidth="429.0">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <TextArea fx:id="textArea" editable="false" layoutX="-4.0" prefHeight="519.0" prefWidth="400.0" snapToPixel="false">
+                           <cursor>
+                              <Cursor fx:constant="NONE" />
+                           </cursor>
+                        </TextArea>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
         </items>
       </SplitPane>
   </children>

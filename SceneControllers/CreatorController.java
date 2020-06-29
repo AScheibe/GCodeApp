@@ -58,17 +58,15 @@ public class CreatorController extends AbstractController {
 
         setTextArea();
         setButtonList();
-        setSearchListener();
+        addSearchListener();
     }
 
     /**
-     * TODO: Sets up the ability for the search bar to detect input and organizes
-     * buttons in alphabetical order.
-     * 
-     * 
+     * Adds a search listener that detects change in text in the search bar.
+     * The listener in turn displays buttons ordered in alphabetical order.
      * 
      */
-    protected void setSearchListener() {
+    private void addSearchListener() {
         searchBar.textProperty().addListener((ChangeListener<String>) (ov, t, t1) -> {
             if (!(searchBar.getText().equals(" ") || searchBar.getText().equals("")
                     || searchBar.getText().substring(0).contains("  ")
@@ -97,7 +95,7 @@ public class CreatorController extends AbstractController {
         });
     }
 
-    protected final void setButtonList() {
+    private void setButtonList() {
 
         buttonList = new ArrayList<Button>();
 
@@ -115,7 +113,7 @@ public class CreatorController extends AbstractController {
      * in the text file upon start up.
      * 
      */
-    protected final void setTextArea() {
+    private void setTextArea() {
         String textToCheck = "";
         String originalText = "";
 
@@ -165,7 +163,7 @@ public class CreatorController extends AbstractController {
      * @param code
      * @throws FileNotFoundException
      */
-    protected final void writeCode(CodeBasic code) throws FileNotFoundException {
+    private void writeCode(CodeBasic code) throws FileNotFoundException {
         String text = textArea.getText();
         text += "\n" + code.getAction();
         textArea.setText(text);
