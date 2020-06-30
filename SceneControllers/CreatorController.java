@@ -19,9 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import Code.*;
-import Util.TextFileManager;
 
-public class CreatorController extends AbstractController {
+import Util.TextFileManager;
+import Util.Buttons;
+
+public class CreatorController extends AbstractController{
     @FXML
     protected MenuBar menuBar;
 
@@ -38,6 +40,12 @@ public class CreatorController extends AbstractController {
     protected TitledPane resultsPane;
 
     @FXML
+    protected TitledPane gCodeListPane;
+
+    @FXML
+    protected TitledPane mCodeListPane;
+    
+    @FXML
     protected Button one;
 
     @FXML
@@ -49,7 +57,6 @@ public class CreatorController extends AbstractController {
     @FXML
     protected Button four;
 
-    private List<Button> buttonList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,7 +64,7 @@ public class CreatorController extends AbstractController {
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
         setTextArea();
-        setButtonList();
+        placeButtons();
         addSearchListener();
     }
 
@@ -79,9 +86,9 @@ public class CreatorController extends AbstractController {
 
                 GridPane grid = new GridPane();
 
-                for (int i = 0; i < buttonList.size(); i++) {
-                    if (buttonList.get(i).getText().toLowerCase().contains(searchBar.getText().toLowerCase())) {
-                        grid.add(buttonList.get(i), 0, i);
+                for (int i = 0; i < Buttons.masterList.size(); i++) {
+                    if (Buttons.masterList.get(i).getText().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+                        grid.add(Buttons.masterList.get(i), 0, i + 5);
                     }
                 }
 
@@ -89,23 +96,36 @@ public class CreatorController extends AbstractController {
             }
 
             else {
+                placeButtons();
                 resultsPane.setVisible(false);
                 buttonsPane.setVisible(true);
             }
         });
     }
 
-    private void setButtonList() {
+    /**
+     * Places buttons used by the application in their respective dropdown menus.
+     * To be called after a search is made.
+     * 
+     */
+    private void placeButtons() {
+        GridPane gCodeButtonGrid = new GridPane();
+        GridPane mCodeButtonGrid = new GridPane();
 
-        buttonList = new ArrayList<Button>();
+        int count = 0;
+        for(Button b : Buttons.gCodeList){
+            gCodeButtonGrid.add(b, 0, count);
+            count++;
+        }
 
-        System.out.println(textArea.getText());
-        System.out.println(one.getText());
+        count = 0;
+        for(Button b : Buttons.mCodeList){
+            mCodeButtonGrid.add(b, 0, count);
+            count++;
+        }
 
-        buttonList.add(one);
-        buttonList.add(two);
-        buttonList.add(three);
-        buttonList.add(four);
+        gCodeListPane.setContent(gCodeButtonGrid);
+        mCodeListPane.setContent(mCodeButtonGrid);
     }
 
     /**

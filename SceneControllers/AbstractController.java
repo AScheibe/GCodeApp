@@ -52,7 +52,7 @@ public abstract class AbstractController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileCreator.fxml"));
         Parent root = (Parent) loader.load();
-        Scene maker = new Scene(root, 760, 800);
+        Scene maker = new Scene(root, 800, 760);
         Stage creatorStage = new Stage();
 
         creatorStage.setTitle("GCode Creator");
