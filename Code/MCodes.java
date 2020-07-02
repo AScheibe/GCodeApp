@@ -1,7 +1,7 @@
 package Code;
 
 public enum MCodes implements CodeBasic{
-    M1("M1"), M2("M2"), M3("M3");
+    M1("M1"), M2("M2"), M3("M3"), M4("M4");
 
     private String name;
 
@@ -17,8 +17,8 @@ public enum MCodes implements CodeBasic{
 
     @Override
     public String getAction() {
-        // TODO Auto-generated method stub
-        return null;
+    // TODO setActions
+        return name;
     }
 
 }

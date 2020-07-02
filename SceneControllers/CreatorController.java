@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
@@ -23,7 +23,7 @@ import Code.*;
 import Util.TextFileManager;
 import Util.Buttons;
 
-public class CreatorController extends AbstractController{
+public class CreatorController extends AbstractController {
     @FXML
     protected MenuBar menuBar;
 
@@ -44,19 +44,6 @@ public class CreatorController extends AbstractController{
 
     @FXML
     protected TitledPane mCodeListPane;
-    
-    @FXML
-    protected Button one;
-
-    @FXML
-    protected Button two;
-
-    @FXML
-    protected Button three;
-
-    @FXML
-    protected Button four;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,13 +51,14 @@ public class CreatorController extends AbstractController{
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
         setTextArea();
+        setButtonEventHandlers();
         placeButtons();
         addSearchListener();
     }
 
     /**
-     * Adds a search listener that detects change in text in the search bar.
-     * The listener in turn displays buttons ordered in alphabetical order.
+     * Adds a search listener that detects change in text in the search bar. The
+     * listener in turn displays buttons ordered in alphabetical order.
      * 
      */
     private void addSearchListener() {
@@ -86,9 +74,10 @@ public class CreatorController extends AbstractController{
 
                 GridPane grid = new GridPane();
 
-                for (int i = 0; i < Buttons.masterList.size(); i++) {
-                    if (Buttons.masterList.get(i).getText().toLowerCase().contains(searchBar.getText().toLowerCase())) {
-                        grid.add(Buttons.masterList.get(i), 0, i + 5);
+                for (int i = 0; i < Buttons.MASTER_LIST.size(); i++) {
+                    if (Buttons.MASTER_LIST.get(i).getText().toLowerCase()
+                            .contains(searchBar.getText().toLowerCase())) {
+                        grid.add(Buttons.MASTER_LIST.get(i), 0, i + 5);
                     }
                 }
 
@@ -104,8 +93,8 @@ public class CreatorController extends AbstractController{
     }
 
     /**
-     * Places buttons used by the application in their respective dropdown menus.
-     * To be called after a search is made.
+     * Places buttons used by the application in their respective dropdown menus. To
+     * be called after a search is made.
      * 
      */
     private void placeButtons() {
@@ -113,13 +102,13 @@ public class CreatorController extends AbstractController{
         GridPane mCodeButtonGrid = new GridPane();
 
         int count = 0;
-        for(Button b : Buttons.gCodeList){
+        for (Button b : Buttons.GCODE_LIST) {
             gCodeButtonGrid.add(b, 0, count);
             count++;
         }
 
         count = 0;
-        for(Button b : Buttons.mCodeList){
+        for (Button b : Buttons.MCODE_LIST) {
             mCodeButtonGrid.add(b, 0, count);
             count++;
         }
@@ -174,6 +163,49 @@ public class CreatorController extends AbstractController{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Sets the actions of each button to be used when writing out the 
+     * GCode file.
+     * 
+     */
+    public void setButtonEventHandlers() {
+        for (Button b : Buttons.MASTER_LIST) {
+            String buttonName = b.getText();
+            CodeBasic code = parseButtonName(buttonName);
+
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    try {
+                        writeCode(code);
+                    } catch (FileNotFoundException e1) {
+                        System.out.println("ERROR: FILE NOT FOUND");
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Based on the name of button passed through, method returns an appropriate code object
+     * in order to properly later write a line of code in the GCode file.
+     * 
+     * @return CodeBasic
+     */
+    private CodeBasic parseButtonName(String buttonName) {
+        for (CodeBasic c : GCodes.values()) {
+            if (buttonName.equals(c.getName()))
+                return c;
+        }
+
+        for (CodeBasic c : MCodes.values()) {
+            if (buttonName.equals(c.getName()))
+                return c;
+        }
+
+        return null;
     }
 
     /**

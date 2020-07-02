@@ -15,12 +15,11 @@ import javafx.stage.Stage;
  */
 public abstract class AbstractController implements Initializable {
 
-
     @FXML
     protected MenuBar menuBar;
-    
+
     protected Stage currentStage;
-    
+
     /**
      * Opens the welcome stage and closes current stage
      * 
@@ -77,13 +76,11 @@ public abstract class AbstractController implements Initializable {
         currentStage.setScene(scene);
     }
 
-    //TODO set up sylesheet selection
-    public void setStyleSheet(Stage currentStage)
-    {
+    // TODO set up sylesheet selection
+    public void setStyleSheet(Stage currentStage) {
     }
 
-    //TODO set up preferences reading
-    public void readPreferences()
-    {
+    // TODO set up preferences reading
+    public void readPreferences() {
     }
 }
