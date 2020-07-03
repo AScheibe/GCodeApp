@@ -1,0 +1,25 @@
+.anchor-pane{
+    -fx-background-color: #404042
+}
+
+.vbox{
+    -fx-background-color: #404042
+}
+
+.stack-pane{
+    -fx-background-color: #404042
+}
+
+.button{
+    -fx-background-color: #626266
+}
+
+.button:hover{
+    -fx-background-color: #8f8f94;
+}
+
+
+.menu-bar{
+    -fx-background-color: #c7c7ca;
+}
+

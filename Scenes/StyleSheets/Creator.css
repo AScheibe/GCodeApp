@@ -1,4 +1,23 @@
 .buttonsAnchorPane{
-    -fx-background-color: #0a1cc0
+    -fx-background-color: #404042
     
 }
+
+.scrollPaneButtons{
+    -fx-background-color: #404042
+}
+
+.accordionPane{
+    -fx-color: #404042
+}
+
+.split-pane > .split-pane-divider {  
+    -fx-padding: 0.1 0.1em 0.1 0.1em; 
+    -fx-color: #404042;
+} 
+
+.scrollPaneButtons > .scroll-bar{  
+    -fx-color: #404042;
+    -fx-background-color: #404042;
+     
+} 
