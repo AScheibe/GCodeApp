@@ -156,6 +156,7 @@ public class CreatorController extends AbstractController {
 
                     textArea.setText(currentText += line + "\n");
                     originalText += line;
+                
                 }
             }
 
@@ -164,7 +165,7 @@ public class CreatorController extends AbstractController {
             e.printStackTrace();
         }
     }
-
+    
     /**
      * Sets the actions of each button to be used when writing out the 
      * GCode file.

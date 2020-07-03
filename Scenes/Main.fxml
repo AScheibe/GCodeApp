@@ -20,38 +20,46 @@
 
 <StackPane styleClass="stack-pane" stylesheets="@StyleSheets/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.MainController">
    <children>
-      <Group StackPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="400.0" prefWidth="640.0" styleClass="vbox" stylesheets="@StyleSheets/Main.css">
-              <children>
-                <AnchorPane focusTraversable="true" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="anchor-pane">
-                  <children>
-                        <Button fx:id="editFileButton" layoutX="118.0" layoutY="200.0" mnemonicParsing="false" onAction="#editFilePressed" prefHeight="35.0" prefWidth="146.0" text="Edit File" textFill="WHITE" AnchorPane.topAnchor="200.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="newFileButton" layoutX="355.0" layoutY="200.0" mnemonicParsing="false" onAction="#newFilePressed" prefHeight="35.0" prefWidth="146.0" text="New File" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Label alignment="CENTER" layoutX="191.0" layoutY="94.0" prefHeight="77.0" prefWidth="248.0" text="GCode Creator" textAlignment="CENTER" textFill="#fffdfd">
-                           <font>
-                              <Font name="SansSerif Bold" size="26.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Button fx:id="tutorialButton" layoutX="220.0" layoutY="253.0" mnemonicParsing="false" onAction="#tutorialPressed" prefHeight="77.0" prefWidth="176.0" text="Tutorial" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                  </children>
-                </AnchorPane>
-              </children>
-            </VBox>
-         </children>
-      </Group>
+      <SplitPane dividerPositions="0.22635658914728682" prefHeight="450.0" prefWidth="647.0">
+        <items>
+          <AnchorPane id="anchor-pane-left" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="anchor-pane-left" stylesheets="@StyleSheets/Main.css">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent" wrappingWidth="98.2060546875">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+          <AnchorPane focusTraversable="true" maxHeight="-1.0" maxWidth="-1.0" prefHeight="460.0" prefWidth="577.0" styleClass="anchor-pane">
+            <children>
+                  <Button fx:id="editFileButton" layoutX="86.0" layoutY="210.0" mnemonicParsing="false" onAction="#editFilePressed" prefHeight="35.0" prefWidth="146.0" text="Edit File" textFill="WHITE" AnchorPane.topAnchor="210.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="newFileButton" layoutX="263.0" layoutY="210.0" mnemonicParsing="false" onAction="#newFilePressed" prefHeight="35.0" prefWidth="146.0" text="New File" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label alignment="CENTER" layoutX="97.0" layoutY="103.0" prefHeight="77.0" prefWidth="299.0" text="NAME PLACEHOLDER" textAlignment="CENTER" textFill="#fffdfd">
+                     <font>
+                        <Font name="SansSerif Bold" size="26.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Button fx:id="tutorialButton" layoutX="160.0" layoutY="270.0" mnemonicParsing="false" onAction="#tutorialPressed" prefHeight="77.0" prefWidth="176.0" text="Tutorial" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+            </children>
+          </AnchorPane>
+        </items>
+      </SplitPane>
     <MenuBar fx:id="menuBar" StackPane.alignment="TOP_CENTER">
       <menus>
         <Menu mnemonicParsing="false" text="File">

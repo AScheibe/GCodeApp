@@ -28,7 +28,7 @@ public abstract class AbstractController implements Initializable {
     public void activateMainStage(Stage currentStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Main.fxml"));
         Parent root = (Parent) loader.load();
-        Scene maker = new Scene(root, 640, 400);
+        Scene maker = new Scene(root, 647, 450);
         Stage primaryStage = new Stage();
 
         primaryStage.setTitle("GCode Creator");
