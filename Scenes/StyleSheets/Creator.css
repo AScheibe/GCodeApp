@@ -21,3 +21,7 @@
     -fx-background-color: #404042;
      
 } 
+
+.textAreaAnchorPane{
+    -fx-background-color: blue;
+}

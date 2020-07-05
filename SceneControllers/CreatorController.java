@@ -9,7 +9,9 @@ import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
@@ -156,7 +158,7 @@ public class CreatorController extends AbstractController {
 
                     textArea.setText(currentText += line + "\n");
                     originalText += line;
-                
+
                 }
             }
 
@@ -165,10 +167,9 @@ public class CreatorController extends AbstractController {
             e.printStackTrace();
         }
     }
-    
+
     /**
-     * Sets the actions of each button to be used when writing out the 
-     * GCode file.
+     * Sets the actions of each button to be used when writing out the GCode file.
      * 
      */
     public void setButtonEventHandlers() {
@@ -190,8 +191,9 @@ public class CreatorController extends AbstractController {
     }
 
     /**
-     * Based on the name of button passed through, method returns an appropriate code object
-     * in order to properly later write a line of code in the GCode file.
+     * Based on the name of button passed through, method returns an appropriate
+     * code object in order to properly later write a line of code in the GCode
+     * file.
      * 
      * @return CodeBasic
      */
@@ -222,6 +224,32 @@ public class CreatorController extends AbstractController {
         textArea.setText(text);
     }
 
+    private void correctDimensionsTextArea() {
+        Task<Void> task = new Task<Void>() {
+
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            System.out.println("Thread cannot sleep");
+                        }
+
+                        double ogTAWidth = textArea.getWidth();
+                        double ogTAHeight = textArea.getHeight();
+
+						
+					}
+                });
+				return null;
+			}
+            
+        };
+    }
     /**
      * NOT USED
      * 
