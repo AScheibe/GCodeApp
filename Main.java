@@ -1,5 +1,6 @@
 import javafx.application.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,7 +36,7 @@ public class Main extends Application {
         Parent root = (Parent)loader.load();
         home = new Scene(root, 640, 400);
         
-        primaryStage.setTitle("GCode Creator");
+        StageStyle.TRANSPARENT;
         primaryStage.setScene(home);
         primaryStage.show();
     }
