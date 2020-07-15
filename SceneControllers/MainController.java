@@ -3,23 +3,34 @@ package SceneControllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import Util.ButtonsUtil;
 import Util.RecentFilesUtil;
 import Util.TextFileManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController extends AbstractController {
+    @FXML
+    private TitledPane recentTitledPane;
 
     @FXML
     private MenuBar menuBar;
@@ -54,6 +65,7 @@ public class MainController extends AbstractController {
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
+        setRecentFiles();
 
     }
 
@@ -172,5 +184,29 @@ public class MainController extends AbstractController {
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 
         return selectedFile;
+    }
+
+    private void setRecentFiles(){
+        List<String> rFList = RecentFilesUtil.RecentFilesList;
+
+        GridPane filesGridPane = new GridPane();
+
+        for(int i = 0; i < rFList.size(); i++){
+            Hyperlink fileName = new Hyperlink(rFList.get(i));
+            fileName.setOnAction(event -> {
+                File file = new File(RecentFilesUtil.rFPrefs.get(fileName.getText(), "null"));
+                TextFileManager.setTextFile(file);
+                try {
+                    activateCreatorController(currentStage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            filesGridPane.add(fileName, 0, i);
+        }
+
+        recentTitledPane.setContent(filesGridPane);
+
     }
 }

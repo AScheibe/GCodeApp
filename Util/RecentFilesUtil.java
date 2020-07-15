@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
-import javax.crypto.spec.RC2ParameterSpec;
 
 public class RecentFilesUtil {
-    private static Preferences rFPrefs = Preferences.userRoot().node("/RecentFiles");
+    public static Preferences rFPrefs = Preferences.userRoot().node("/RecentFiles");
 
-    private static List<String> recentFilesList;
+    public static List<String> RecentFilesList;
 
     static {
-        recentFilesList = new ArrayList<String>(1);
+        RecentFilesList = new ArrayList<String>(1);
         updateList();
     }
 
@@ -21,12 +20,9 @@ public class RecentFilesUtil {
         try {
             String[] pathKeys = rFPrefs.keys();
 
-            System.out.println(pathKeys.length);
-
-
-                for (int i = 0; i < pathKeys.length; i++) {
-                    recentFilesList.add(i, rFPrefs.get(pathKeys[i], "file not found"));
-                }
+            for (int i = 0; i < pathKeys.length; i++) {
+                RecentFilesList.add(i, pathKeys[i]);
+            }
 
         } catch (BackingStoreException e) {
             // TODO Auto-generated catch block
@@ -39,7 +35,7 @@ public class RecentFilesUtil {
         try {
             String[] ogPaths = rFPrefs.keys();
 
-            if(ogPaths.length > 1) {
+            if (ogPaths.length > 1) {
                 for (int i = 0; i < ogPaths.length - 1; i++) {
                     String tempPath = rFPrefs.get(ogPaths[i], "no file found");
 
@@ -49,8 +45,7 @@ public class RecentFilesUtil {
                         break;
                     }
                 }
-            }
-            else if(ogPaths.length == 1){
+            } else if (ogPaths.length == 1) {
                 String tempPath = rFPrefs.get("0", "no file found");
                 rFPrefs.put("1", tempPath);
             }
@@ -63,6 +58,6 @@ public class RecentFilesUtil {
     }
 
     public static List<String> getRecentFilesList() {
-        return recentFilesList;
+        return RecentFilesList;
     }
 }
