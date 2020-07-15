@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Util.RecentFilesUtil;
 import Util.TextFileManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,6 +70,7 @@ public class MainController extends AbstractController {
         file = editFileSetUp();
 
         TextFileManager.setTextFile(file);
+        RecentFilesUtil.putRecentFile(file.getAbsolutePath());
         activateCreatorController(stage);
     }
 
@@ -84,13 +86,17 @@ public class MainController extends AbstractController {
 
         file = newFileSetup();
         TextFileManager.setTextFile(file);
+        RecentFilesUtil.putRecentFile(file.getAbsolutePath());
         activateCreatorController(stage);
     }
 
     // TODO
     @FXML
     void tutorialPressed(ActionEvent event) {
-
+        for(String s : RecentFilesUtil.getRecentFilesList())
+        {
+            System.out.println(s);
+        }
     }
 
     /**

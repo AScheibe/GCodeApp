@@ -8,7 +8,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 
-public abstract class Buttons {
+public abstract class ButtonsUtil {
     private static final Button g1, g2, g3, g4;
     private static final Button m1, m2, m3, m4;
 

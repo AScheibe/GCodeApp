@@ -23,7 +23,7 @@ import javafx.scene.layout.GridPane;
 import Code.*;
 
 import Util.TextFileManager;
-import Util.Buttons;
+import Util.ButtonsUtil;
 
 public class CreatorController extends AbstractController {
     @FXML
@@ -76,10 +76,10 @@ public class CreatorController extends AbstractController {
 
                 GridPane grid = new GridPane();
 
-                for (int i = 0; i < Buttons.MASTER_LIST.size(); i++) {
-                    if (Buttons.MASTER_LIST.get(i).getText().toLowerCase()
+                for (int i = 0; i < ButtonsUtil.MASTER_LIST.size(); i++) {
+                    if (ButtonsUtil.MASTER_LIST.get(i).getText().toLowerCase()
                             .contains(searchBar.getText().toLowerCase())) {
-                        grid.add(Buttons.MASTER_LIST.get(i), 0, i + 5);
+                        grid.add(ButtonsUtil.MASTER_LIST.get(i), 0, i + 5);
                     }
                 }
 
@@ -104,13 +104,13 @@ public class CreatorController extends AbstractController {
         GridPane mCodeButtonGrid = new GridPane();
 
         int count = 0;
-        for (Button b : Buttons.GCODE_LIST) {
+        for (Button b : ButtonsUtil.GCODE_LIST) {
             gCodeButtonGrid.add(b, 0, count);
             count++;
         }
 
         count = 0;
-        for (Button b : Buttons.MCODE_LIST) {
+        for (Button b : ButtonsUtil.MCODE_LIST) {
             mCodeButtonGrid.add(b, 0, count);
             count++;
         }
@@ -173,7 +173,7 @@ public class CreatorController extends AbstractController {
      * 
      */
     public void setButtonEventHandlers() {
-        for (Button b : Buttons.MASTER_LIST) {
+        for (Button b : ButtonsUtil.MASTER_LIST) {
             String buttonName = b.getText();
             CodeBasic code = parseButtonName(buttonName);
 

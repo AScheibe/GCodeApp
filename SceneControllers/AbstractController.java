@@ -1,6 +1,7 @@
 package SceneControllers;
 
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,8 @@ public abstract class AbstractController implements Initializable {
     protected MenuBar menuBar;
 
     protected Stage currentStage;
+
+    private Preferences prefs = Preferences.userNodeForPackage(this.getClass());; 
 
     /**
      * Opens the welcome stage and closes current stage
@@ -82,5 +85,6 @@ public abstract class AbstractController implements Initializable {
 
     // TODO set up preferences reading
     public void readPreferences() {
+
     }
 }
