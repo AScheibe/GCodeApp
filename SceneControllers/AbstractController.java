@@ -50,8 +50,6 @@ public abstract class AbstractController implements Initializable {
      * @param currentStage current stage of the application
      */
     public void activateCreatorController(Stage currentStage) throws IOException {
-        currentStage.close();
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 760);
@@ -61,6 +59,7 @@ public abstract class AbstractController implements Initializable {
         creatorStage.setScene(maker);
         creatorStage.show();
 
+        currentStage.close();
         currentStage = creatorStage;
     }
 

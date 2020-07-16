@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <StackPane styleClass="stack-pane" stylesheets="@StyleSheets/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.MainController">
    <children>
@@ -20,12 +19,10 @@
         <items>
           <AnchorPane id="anchor-pane-left" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="anchor-pane-left" stylesheets="@StyleSheets/Main.css">
                <children>
-                  <Text fill="WHITE" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent" wrappingWidth="98.2060546875">
+                  <TitledPane fx:id="recentTitledPane" collapsible="false" layoutX="8.0" layoutY="38.0" prefHeight="236.0" prefWidth="129.0" text="Recent">
                      <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Text>
-                  <TitledPane fx:id="recentTitledPane" layoutX="8.0" layoutY="77.0" prefHeight="236.0" prefWidth="129.0" />
+                        <Font size="14.0" />
+                     </font></TitledPane>
                </children>
             </AnchorPane>
           <AnchorPane focusTraversable="true" maxHeight="-1.0" maxWidth="-1.0" prefHeight="460.0" prefWidth="577.0" styleClass="anchor-pane">

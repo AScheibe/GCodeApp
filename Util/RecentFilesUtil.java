@@ -36,7 +36,7 @@ public class RecentFilesUtil {
             String[] ogPaths = rFPrefs.keys();
 
             if (ogPaths.length > 1) {
-                for (int i = 0; i < ogPaths.length - 1; i++) {
+                for (int i = 0; i < ogPaths.length; i++) {
                     String tempPath = rFPrefs.get(ogPaths[i], "no file found");
 
                     rFPrefs.put(Integer.toString(i + 1), tempPath);
