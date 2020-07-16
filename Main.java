@@ -1,5 +1,9 @@
+
+import SceneControllers.PrimaryStageDataTransfer;
 import javafx.application.*;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,6 +41,14 @@ public class Main extends Application {
         
         primaryStage.setTitle("SPARKS");
         primaryStage.setScene(home);
+
+        primaryStage.setOnShown(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                PrimaryStageDataTransfer.transfer(primaryStage);
+            }
+        });
+
         primaryStage.show();
     }
 }

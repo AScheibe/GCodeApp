@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import Util.ButtonsUtil;
 import Util.RecentFilesUtil;
@@ -104,8 +105,7 @@ public class MainController extends AbstractController {
     // TODO
     @FXML
     void tutorialPressed(ActionEvent event) {
-        for(String s : RecentFilesUtil.getRecentFilesList())
-        {
+        for (String s : RecentFilesUtil.getRecentFilesList()) {
             System.out.println(s);
         }
     }
@@ -185,18 +185,20 @@ public class MainController extends AbstractController {
         return selectedFile;
     }
 
-    private void setRecentFiles(){
-        List<String> rFList = RecentFilesUtil.RecentFilesList;
+    private void setRecentFiles() {
+        List<String> rFList = RecentFilesUtil.RecentFilesMap.keySet().stream().collect(Collectors.toList());
+        ;
 
         GridPane filesGridPane = new GridPane();
 
-        for(int i = 0; i < rFList.size(); i++){
+        for (int i = 0; i < rFList.size(); i++) {
             Hyperlink fileName = new Hyperlink(rFList.get(i));
             fileName.setOnAction(event -> {
-                File file = new File(RecentFilesUtil.rFPrefs.get(fileName.getText(), "null"));
+                File file = new File(
+                        RecentFilesUtil.rFPrefs.get(RecentFilesUtil.RecentFilesMap.get(fileName.getText()), "null"));
                 TextFileManager.setTextFile(file);
                 try {
-                    activateCreatorController(currentStage);
+                    activateStageCarrier("creator controller");;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

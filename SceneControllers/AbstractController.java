@@ -19,7 +19,7 @@ public abstract class AbstractController implements Initializable {
     @FXML
     protected MenuBar menuBar;
 
-    protected Stage currentStage;
+    protected static Stage currentStage;
 
     private Preferences prefs = Preferences.userNodeForPackage(this.getClass());; 
 
@@ -63,6 +63,17 @@ public abstract class AbstractController implements Initializable {
         currentStage = creatorStage;
     }
 
+    public void activateStageCarrier(String stageName) throws IOException {
+        stageName = stageName.toLowerCase();
+
+        if(stageName.equals("creator controller")){
+            activateCreatorController(currentStage);
+        }
+
+        if(stageName.equals("main")){
+            activateMainStage(currentStage);
+        }
+    }
     /**
      * Changes the scene to the specefied fxml file
      *
