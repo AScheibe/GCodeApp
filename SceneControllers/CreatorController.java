@@ -1,8 +1,11 @@
 package SceneControllers;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -56,6 +59,14 @@ public class CreatorController extends AbstractController {
         setButtonEventHandlers();
         placeButtons();
         addSearchListener();
+    }
+
+    @FXML
+    public void saveFile(ActionEvent e) throws IOException {
+        File file = TextFileManager.getTextFile();
+        BufferedWriter out = new BufferedWriter(new FileWriter(file));
+        out.write(textArea.getText());
+        out.close();
     }
 
     /**
@@ -141,7 +152,7 @@ public class CreatorController extends AbstractController {
             fileScanner.close();
         } catch (Exception e) {
             try {
-                activateMainStage(currentStage);
+                activateMainStage();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

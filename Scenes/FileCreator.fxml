@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
@@ -14,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
@@ -22,18 +14,17 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 
-<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.CreatorController">
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.CreatorController">
    <children>
       <SplitPane dividerPositions="0.4751445086705202" prefHeight="779.0" prefWidth="795.0">
         <items>
           <AnchorPane id="buttonsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="777.0" prefWidth="408.0" styleClass="buttonsAnchorPane" stylesheets="@StyleSheets/Creator.css">
                <children>
                   <TextField fx:id="searchBar" layoutX="101.0" layoutY="37.0" prefHeight="37.0" prefWidth="170.0" promptText="Search" />
-                  <Accordion id="accordionPane" fx:id="buttonsPane" layoutX="3.0" layoutY="91.0" prefHeight="404.0" prefWidth="389.0" styleClass="accordionPane" stylesheets="@StyleSheets/Creator.css" AnchorPane.leftAnchor="3.0">
+                  <Accordion id="accordionPane" fx:id="buttonsPane" layoutX="-8.0" layoutY="91.0" prefHeight="404.0" prefWidth="389.0" styleClass="accordionPane" stylesheets="@StyleSheets/Creator.css" AnchorPane.leftAnchor="-8.0">
                     <panes>
                       <TitledPane fx:id="gCodeListPane" animated="false" prefHeight="350.0" prefWidth="369.0" styleClass="accordionPane" text="GCode" textFill="WHITE">
                            <content>
@@ -58,7 +49,7 @@
                         <InnerShadow />
                      </effect>
                   </Accordion>
-                  <TitledPane fx:id="resultsPane" alignment="CENTER" animated="false" blendMode="DARKEN" collapsible="false" layoutX="85.0" layoutY="55.0" prefHeight="238.0" prefWidth="202.0" text="Results..." visible="false">
+                  <TitledPane fx:id="resultsPane" alignment="CENTER" animated="false" blendMode="DARKEN" collapsible="false" layoutX="85.0" layoutY="82.0" prefHeight="238.0" prefWidth="202.0" text="Results..." visible="false">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="200.0">
                            <children>
@@ -99,7 +90,7 @@
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#saveFile" text="Save" />
             <MenuItem mnemonicParsing="false" text="Save As…" />
             <MenuItem mnemonicParsing="false" text="Revert" />
             <SeparatorMenuItem mnemonicParsing="false" />

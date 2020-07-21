@@ -1,5 +1,5 @@
 
-import SceneControllers.PrimaryStageDataTransfer;
+import SceneControllers.AbstractController;
 import javafx.application.*;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -45,7 +45,7 @@ public class Main extends Application {
         primaryStage.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                PrimaryStageDataTransfer.transfer(primaryStage);
+                AbstractController.CurrentStage = primaryStage;
             }
         });
 

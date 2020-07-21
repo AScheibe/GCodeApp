@@ -19,16 +19,13 @@ public abstract class AbstractController implements Initializable {
     @FXML
     protected MenuBar menuBar;
 
-    protected static Stage currentStage;
-
-    private Preferences prefs = Preferences.userNodeForPackage(this.getClass());; 
+    public static Stage CurrentStage;
 
     /**
      * Opens the welcome stage and closes current stage
      * 
-     * @param currentStage current stage of the application
      */
-    public void activateMainStage(Stage currentStage) throws IOException {
+    public void activateMainStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Main.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 647, 450);
@@ -38,7 +35,7 @@ public abstract class AbstractController implements Initializable {
         primaryStage.setScene(maker);
         primaryStage.show();
 
-        currentStage = primaryStage;
+        CurrentStage = primaryStage;
     }
 
     /**
@@ -47,9 +44,8 @@ public abstract class AbstractController implements Initializable {
      * Sets up a new file
      *
      * 
-     * @param currentStage current stage of the application
      */
-    public void activateCreatorController(Stage currentStage) throws IOException {
+    public void activateCreatorController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileCreator.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 800, 760);
@@ -59,21 +55,10 @@ public abstract class AbstractController implements Initializable {
         creatorStage.setScene(maker);
         creatorStage.show();
 
-        currentStage.close();
-        currentStage = creatorStage;
+        CurrentStage.close();
+        CurrentStage = creatorStage;
     }
 
-    public void activateStageCarrier(String stageName) throws IOException {
-        stageName = stageName.toLowerCase();
-
-        if(stageName.equals("creator controller")){
-            activateCreatorController(currentStage);
-        }
-
-        if(stageName.equals("main")){
-            activateMainStage(currentStage);
-        }
-    }
     /**
      * Changes the scene to the specefied fxml file
      *
@@ -88,6 +73,15 @@ public abstract class AbstractController implements Initializable {
 
         currentStage.setScene(scene);
     }
+
+    public void manageMenuBar(){
+
+    }
+
+    private void setRecentFilesInMenuBar(){
+        
+    }
+
 
     // TODO set up sylesheet selection
     public void setStyleSheet(Stage currentStage) {

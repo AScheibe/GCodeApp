@@ -34,9 +34,6 @@ public class MainController extends AbstractController {
     private TitledPane recentTitledPane;
 
     @FXML
-    private MenuBar menuBar;
-
-    @FXML
     private Button editFileButton;
 
     @FXML
@@ -66,7 +63,7 @@ public class MainController extends AbstractController {
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
-        setRecentFiles();
+        setRecentFilesInPane();
     }
 
     /**
@@ -77,13 +74,11 @@ public class MainController extends AbstractController {
      */
     @FXML
     void editFilePressed(ActionEvent event) throws IOException {
-        Stage stage = (Stage) newFileButton.getScene().getWindow();
-
         file = editFileSetUp();
 
         TextFileManager.setTextFile(file);
         RecentFilesUtil.putRecentFile(file.getAbsolutePath());
-        activateCreatorController(stage);
+        activateCreatorController();
     }
 
     /**
@@ -94,12 +89,10 @@ public class MainController extends AbstractController {
      */
     @FXML
     void newFilePressed(ActionEvent event) throws IOException {
-        Stage stage = (Stage) newFileButton.getScene().getWindow();
-
         file = newFileSetup();
         TextFileManager.setTextFile(file);
         RecentFilesUtil.putRecentFile(file.getAbsolutePath());
-        activateCreatorController(stage);
+        activateCreatorController();
     }
 
     // TODO
@@ -133,7 +126,7 @@ public class MainController extends AbstractController {
 
                 while (checkNull) {
                     DirectoryChooser directoryChooser = new DirectoryChooser();
-                    selectedDirectory = directoryChooser.showDialog(currentStage);
+                    selectedDirectory = directoryChooser.showDialog(CurrentStage);
                     if (selectedDirectory == null) {
                         return null;
                     } else {
@@ -180,12 +173,12 @@ public class MainController extends AbstractController {
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
 
-        File selectedFile = fileChooser.showOpenDialog(currentStage);
+        File selectedFile = fileChooser.showOpenDialog(CurrentStage);
 
         return selectedFile;
     }
 
-    private void setRecentFiles() {
+    private void setRecentFilesInPane() {
         List<String> rFList = RecentFilesUtil.RecentFilesMap.keySet().stream().collect(Collectors.toList());
         ;
 
@@ -198,7 +191,7 @@ public class MainController extends AbstractController {
                         RecentFilesUtil.rFPrefs.get(RecentFilesUtil.RecentFilesMap.get(fileName.getText()), "null"));
                 TextFileManager.setTextFile(file);
                 try {
-                    activateStageCarrier("creator controller");;
+                    activateCreatorController();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
