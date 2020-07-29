@@ -1,4 +1,3 @@
-
 import SceneControllers.AbstractController;
 import javafx.application.*;
 import javafx.event.EventHandler;

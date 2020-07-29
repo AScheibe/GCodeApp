@@ -39,10 +39,9 @@ public class RecentFilesUtil {
                 if (recentFilesList.size() == 1) {
                     recentPreferences.put("1", recentPreferences.get("0", "not found"));
                 } else {
-                    int c = 1;
-                    while (c < recentFilesList.size() + 1 && c < 5) {
-                        recentPreferences.put(Integer.toString(c),
-                                recentPreferences.get(Integer.toString(c - 1), "not found"));
+                    int c = 0;
+                    while (c < recentFilesList.size() && c < 4) {
+                        recentPreferences.put(Integer.toString(c + 1), recentFilesList.get(c));
                         c++;
                     }
                 }
