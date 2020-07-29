@@ -1,6 +1,7 @@
 package Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,83 +9,62 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 public class RecentFilesUtil {
-    public static Preferences rFPrefs = Preferences.userRoot().node("/RecentFiles");
+    public static Preferences recentPreferences = Preferences.userRoot().node("/RecentFiles");
 
-    public static List<String> RecentFilesList;
-
-    public static Map<String, String> RecentFilesMap; // Hash map used to obtain text for buttons
+    public static List<String> recentFilesList;
 
     static {
-        RecentFilesList = new ArrayList<String>();
-        RecentFilesMap = new HashMap<String, String>();
-        updateList();
-        updateHashMap();
-    }
-
-    private static void updateHashMap() {
-        if (RecentFilesList.size() == 0) {
-            String path = rFPrefs.get(rFPrefs.get("0", "not found"), "error finding file");
-
-            String text = path.substring(path.lastIndexOf("/") + 1);
-            RecentFilesMap.put(text, rFPrefs.get("0", "not found"));
-        } else {
-            for (int i = 0; i < RecentFilesList.size(); i++) {
-                try {
-                    String[] pathKeys = rFPrefs.keys();
-                    String path = rFPrefs.get(pathKeys[i], "error finding file");
-
-                    String text = path.substring(path.lastIndexOf("/") + 1);
-                    RecentFilesMap.put(text, pathKeys[i]);
-                } catch (BackingStoreException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    private static void updateList() {
+        recentFilesList = new ArrayList<String>();
         try {
-            String[] pathKeys = rFPrefs.keys();
-
-            for (int i = 0; i < pathKeys.length; i++) {
-                RecentFilesList.add(i, pathKeys[i]);
-            }
-
+            updateList();
         } catch (BackingStoreException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public static void putRecentFile(String fPath) {
-        String filePath = fPath;
-        try {
-            String[] ogPaths = rFPrefs.keys();
+    private static void updateList() throws BackingStoreException {
+        String[] keys = recentPreferences.keys();
 
-            if (ogPaths.length > 1) {
-                for (int i = 0; i < ogPaths.length; i++) {
-                    String tempPath = rFPrefs.get(ogPaths[i], "no file found");
+        Arrays.sort(keys);
 
-                    rFPrefs.put(Integer.toString(i + 1), tempPath);
-
-                    if (i == 5) {
-                        break;
-                    }
-                }
-            } else if (ogPaths.length == 1) {
-                String tempPath = rFPrefs.get("0", "no file found");
-                rFPrefs.put("1", tempPath);
-            }
-        } catch (BackingStoreException e) {
-            e.printStackTrace();
+        for (int i = 0; i < keys.length; i++) {
+            recentFilesList.add(recentPreferences.get(keys[i], "file not found"));
         }
-
-        rFPrefs.put("0", filePath);
-        updateList();
-        updateHashMap();
     }
 
-    public static List<String> getRecentFilesList() {
-        return RecentFilesList;
+    public static void putRecentFile(String filePath) {
+        if (recentFilesList.size() > 0) {
+            if (filePath != recentFilesList.get(0)) {
+                if (recentFilesList.size() == 1) {
+                    recentPreferences.put("1", recentPreferences.get("0", "not found"));
+                } else {
+                    int c = 1;
+                    while (c < recentFilesList.size() + 1 && c < 5) {
+                        recentPreferences.put(Integer.toString(c),
+                                recentPreferences.get(Integer.toString(c - 1), "not found"));
+                        c++;
+                    }
+                }
+
+                recentPreferences.put("0", filePath);
+
+                try {
+                    updateList();
+                } catch (BackingStoreException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            recentPreferences.put("0", filePath);
+
+            try {
+                updateList();
+            } catch (BackingStoreException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 }

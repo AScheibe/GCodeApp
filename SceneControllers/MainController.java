@@ -98,7 +98,7 @@ public class MainController extends AbstractController {
     // TODO
     @FXML
     void tutorialPressed(ActionEvent event) {
-        for (String s : RecentFilesUtil.getRecentFilesList()) {
+        for (String s : RecentFilesUtil.recentFilesList) {
             System.out.println(s);
         }
     }
@@ -179,16 +179,16 @@ public class MainController extends AbstractController {
     }
 
     private void setRecentFilesInPane() {
-        List<String> rFList = RecentFilesUtil.RecentFilesMap.keySet().stream().collect(Collectors.toList());
-        ;
-
+        List<String> rFList = RecentFilesUtil.recentFilesList;
         GridPane filesGridPane = new GridPane();
 
         for (int i = 0; i < rFList.size(); i++) {
-            Hyperlink fileName = new Hyperlink(rFList.get(i));
+            String fileShort = rFList.get(i).substring(rFList.get(i).lastIndexOf("/") + 1);
+            Hyperlink fileName = new Hyperlink(fileShort);
+            int index = i;
+
             fileName.setOnAction(event -> {
-                File file = new File(
-                        RecentFilesUtil.rFPrefs.get(RecentFilesUtil.RecentFilesMap.get(fileName.getText()), "null"));
+                File file = new File(rFList.get(index));
                 TextFileManager.setTextFile(file);
                 try {
                     activateCreatorController();
@@ -201,6 +201,5 @@ public class MainController extends AbstractController {
         }
 
         recentTitledPane.setContent(filesGridPane);
-
     }
 }
