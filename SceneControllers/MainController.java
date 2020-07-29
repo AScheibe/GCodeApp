@@ -64,6 +64,7 @@ public class MainController extends AbstractController {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
         setRecentFilesInPane();
+        setRecentFilesInMenuBar();
     }
 
     /**

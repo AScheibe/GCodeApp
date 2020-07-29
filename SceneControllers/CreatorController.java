@@ -59,6 +59,7 @@ public class CreatorController extends AbstractController {
         setButtonEventHandlers();
         placeButtons();
         addSearchListener();
+        setRecentFilesInMenuBar();
     }
 
     @FXML
