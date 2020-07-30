@@ -2,6 +2,7 @@ import SceneControllers.AbstractController;
 import javafx.application.*;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
