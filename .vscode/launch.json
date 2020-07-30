@@ -5,7 +5,7 @@
             "name": "CodeLens (Launch) - Main",
             "request": "launch",
             "vmArgs": "--module-path /Users/alexscheibe/Desktop/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "Main",
+            "mainClass": "src.Main",
             "projectName": "GCodeApp_74bcd2c4"
         }
     ]

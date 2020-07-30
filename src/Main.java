@@ -1,4 +1,6 @@
-import SceneControllers.AbstractController;
+package src;
+
+import src.controllers.AbstractController;
 import javafx.application.*;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -35,7 +37,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/Main.fxml"));
         Parent root = (Parent)loader.load();
         home = new Scene(root, 640, 400);
         

@@ -1,4 +1,4 @@
-package SceneControllers;
+package src.controllers;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -23,10 +23,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
-import Code.*;
+import src.code.*;
 
-import Util.TextFileManager;
-import Util.ButtonsUtil;
+import src.util.TextFileManager;
+import src.util.ButtonsUtil;
 
 public class CreatorController extends AbstractController {
     @FXML

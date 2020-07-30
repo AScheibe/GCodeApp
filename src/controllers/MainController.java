@@ -1,4 +1,4 @@
-package SceneControllers;
+package src.controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import Util.ButtonsUtil;
-import Util.RecentFilesUtil;
-import Util.TextFileManager;
+import src.util.ButtonsUtil;
+import src.util.RecentFilesUtil;
+import src.util.TextFileManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

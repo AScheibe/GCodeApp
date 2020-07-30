@@ -1,11 +1,11 @@
-package Code;
+package src.code;
 
-public enum GCodes implements CodeBasic{
-    G1("G1"), G2("G2"), G3("G3"), G4("G4");
+public enum MCodes implements CodeBasic{
+    M1("M1"), M2("M2"), M3("M3"), M4("M4");
 
     private String name;
 
-    private GCodes(String name)
+    private MCodes(String name)
     {
         this.name = name;
     }
@@ -17,7 +17,7 @@ public enum GCodes implements CodeBasic{
 
     @Override
     public String getAction() {
-        // TODO setActions
+    // TODO setActions
         return name;
     }
 

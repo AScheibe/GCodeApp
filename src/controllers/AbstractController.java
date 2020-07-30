@@ -1,21 +1,23 @@
-package SceneControllers;
+package src.controllers;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.prefs.Preferences;
 
-import Util.RecentFilesUtil;
-import Util.TextFileManager;
+import src.util.RecentFilesUtil;
+import src.util.TextFileManager;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -37,7 +39,7 @@ public abstract class AbstractController implements Initializable {
      * 
      */
     public void activateMainStage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/Main.fxml"));
         Parent root = (Parent) loader.load();
         Scene maker = new Scene(root, 647, 450);
         Stage primaryStage = new Stage();
@@ -56,18 +58,27 @@ public abstract class AbstractController implements Initializable {
      * 
      */
     public void activateCreatorController() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/FileCreator.fxml"));
-        Parent root = (Parent) loader.load();
-        Scene maker = new Scene(root, 800, 760);
-        Stage creatorStage = new Stage();
+        if(TextFileManager.getTextFile().exists()){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/FileCreator.fxml"));
+            Parent root = (Parent) loader.load();
+            Scene maker = new Scene(root, 800, 760);
+            Stage creatorStage = new Stage();
 
-        creatorStage.setTitle("GCode Creator");
-        creatorStage.setScene(maker);
+            creatorStage.setTitle("GCode Creator");
+            creatorStage.setScene(maker);
 
-        creatorStage.show();
+            creatorStage.show();
 
-        CurrentStage.close();
-        CurrentStage = creatorStage;
+            CurrentStage.close();
+            CurrentStage = creatorStage;
+        }
+        else{
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("ERROR MESSAGE");
+            alert.setContentText("ERROR: File Not Found");
+            alert.showAndWait();
+            System.out.println("File not found");
+        }
     }
 
     /**

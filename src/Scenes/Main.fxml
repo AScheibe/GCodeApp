@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane styleClass="stack-pane" stylesheets="@StyleSheets/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllers.MainController">
+<StackPane styleClass="stack-pane" stylesheets="@StyleSheets/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.MainController">
    <children>
       <SplitPane dividerPositions="0.22635658914728682" prefHeight="450.0" prefWidth="647.0">
         <items>
