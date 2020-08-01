@@ -3,11 +3,9 @@ package src.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.prefs.Preferences;
 
 import src.util.RecentFilesUtil;
 import src.util.TextFileManager;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +17,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * Class for controllers to extend in order to get access to the primary stage
@@ -46,6 +43,7 @@ public abstract class AbstractController implements Initializable {
 
         primaryStage.setTitle("GCode Creator");
         primaryStage.setScene(maker);
+        primaryStage.setResizable(false);
         primaryStage.show();
         CurrentStage = primaryStage;
     }
@@ -61,7 +59,7 @@ public abstract class AbstractController implements Initializable {
         if(TextFileManager.getTextFile().exists()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/FileCreator.fxml"));
             Parent root = (Parent) loader.load();
-            Scene maker = new Scene(root, 800, 760);
+            Scene maker = new Scene(root, 900, 750);
             Stage creatorStage = new Stage();
 
             creatorStage.setTitle("GCode Creator");

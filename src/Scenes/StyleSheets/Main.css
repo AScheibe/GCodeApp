@@ -37,6 +37,10 @@
     -fx-color: #3f3f4200;
 }   
 
+.titled-pane > .title:hover {
+    -fx-color:#3f3f4200;
+}
+
 .titled-pane > .content{
     -fx-background-color: #3f3f42;
     -fx-border-width: 0px;

@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -19,24 +18,24 @@
 
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.CreatorController">
    <children>
-      <SplitPane dividerPositions="0.4751445086705202" prefHeight="779.0" prefWidth="795.0">
+      <SplitPane dividerPositions="0.4751445086705202" prefHeight="750.0" prefWidth="900.0">
         <items>
           <AnchorPane id="buttonsAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="777.0" prefWidth="408.0" styleClass="buttonsAnchorPane" stylesheets="@StyleSheets/Creator.css">
                <children>
-                  <TextField fx:id="searchBar" layoutX="101.0" layoutY="37.0" prefHeight="37.0" prefWidth="170.0" promptText="Search" />
-                  <Accordion id="accordionPane" fx:id="buttonsPane" layoutX="-8.0" layoutY="91.0" prefHeight="404.0" prefWidth="389.0" styleClass="accordionPane" stylesheets="@StyleSheets/Creator.css" AnchorPane.leftAnchor="-8.0">
+                  <TextField fx:id="searchBar" layoutX="127.0" layoutY="45.0" prefHeight="37.0" prefWidth="170.0" promptText="Search" />
+                  <Accordion id="accordionPane" fx:id="buttonsPane" layoutX="17.0" layoutY="90.0" prefHeight="75.0" prefWidth="389.0" styleClass="accordionPane" stylesheets="@StyleSheets/Creator.css" AnchorPane.leftAnchor="17.0">
                     <panes>
                       <TitledPane fx:id="gCodeListPane" animated="false" prefHeight="350.0" prefWidth="369.0" styleClass="accordionPane" text="GCode" textFill="WHITE">
                            <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="355.0" styleClass="buttonsAnchorPane" stylesheets="@StyleSheets/Creator.css" />
                            </content>
                       </TitledPane>
-                        <TitledPane fx:id="mCodeListPane" animated="false" layoutX="10.0" layoutY="10.0" prefHeight="350.0" prefWidth="366.0" text="MCode" textFill="WHITE">
+                        <TitledPane fx:id="mCodeListPane" animated="false" layoutX="10.0" layoutY="10.0" prefHeight="350.0" prefWidth="366.0" styleClass="accordionPane" text="MCode" textFill="WHITE">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0" styleClass="buttonsAnchorPane" />
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" text="untitled 1" textFill="WHITE">
+                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" styleClass="accordionPane" text="untitled 1" textFill="WHITE">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="380.0" styleClass="buttonsAnchorPane" />
                            </content>
@@ -49,17 +48,9 @@
                         <InnerShadow />
                      </effect>
                   </Accordion>
-                  <TitledPane fx:id="resultsPane" alignment="CENTER" animated="false" blendMode="DARKEN" collapsible="false" layoutX="85.0" layoutY="82.0" prefHeight="238.0" prefWidth="202.0" text="Results..." visible="false">
+                  <TitledPane fx:id="resultsPane" alignment="CENTER" animated="false" blendMode="DARKEN" collapsible="false" layoutX="111.0" layoutY="90.0" prefHeight="238.0" prefWidth="202.0" text="Results..." visible="false">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="200.0">
-                           <children>
-                              <Button layoutY="51.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="78.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutY="132.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Button" />
-                              <Button layoutX="26.0" layoutY="530.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="157.0" text="View Preview" />
-                           </children>
-                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="200.0" />
                     </content>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -72,7 +63,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="700.0" prefWidth="405.0" styleClass="textAreaAnchorPane">
                <children>
-                  <TextArea id="scrollPaneButtons" fx:id="textArea" editable="false" layoutX="33.0" layoutY="44.0" prefHeight="693.0" prefWidth="340.0" snapToPixel="false" styleClass="scrollPaneButtons" stylesheets="@StyleSheets/Creator.css">
+                  <TextArea id="scrollPaneButtons" fx:id="textArea" editable="false" layoutX="33.0" layoutY="43.0" prefHeight="693.0" prefWidth="402.0" snapToPixel="false" styleClass="scrollPaneButtons" stylesheets="@StyleSheets/Creator.css">
                      <cursor>
                         <Cursor fx:constant="NONE" />
                      </cursor>

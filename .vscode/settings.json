@@ -9,5 +9,6 @@
         "lib/javafx.swing.jar",
         "lib/javafx.web.jar",
         "/Users/alexscheibe/Desktop/javafx-sdk-11.0.2/lib/**/*.jar"
-    ]
+    ],
+    "java.dependency.syncWithFolderExplorer": true
 }
