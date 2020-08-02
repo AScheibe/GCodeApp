@@ -3,9 +3,10 @@
     
 }
 
-.scrollPaneButtons{
-    -fx-background-color: #404042
-}
+.scroll-pane{
+    -fx-color: #404042
+}    
+
 
 .accordionPane{
     -fx-color: #404042
@@ -25,3 +26,24 @@
 .textAreaAnchorPane{
     -fx-background-color: blue;
 }
+
+.searchPane > .title{
+    -fx-color:#404042;
+}
+
+.textAreaAnchorPane{
+    -fx-background-color: #404042
+}
+
+.menu-bar{
+    -fx-background-color: #c7c7ca;
+}
+
+.split-pane > .split-pane-divider {  
+    -fx-padding: 0.3 0.3em 0.3 0.3em; 
+    -fx-color: #2b2a2a;
+} 
+
+.scroll-pane > .viewport {
+    -fx-background-color: #404042;
+ }
