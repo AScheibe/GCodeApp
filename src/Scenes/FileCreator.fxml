@@ -17,13 +17,52 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.CreatorController">
+
+<VBox fx:id="vBoxMain" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.CreatorController">
    <children>
-      <HBox prefWidth="1074.0">
+       <MenuBar id="menuBar" fx:id="menuBar" centerShape="false" stylesheets="@StyleSheets/Creator.css" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#saveFile" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <HBox fx:id="hBox" prefWidth="1074.0">
          <children>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="699.0" prefWidth="73.0" styleClass="side-bar" stylesheets="@StyleSheets/Creator.css">
                <children>
@@ -52,7 +91,7 @@
                   <Glow level="0.0" />
                </effect>
             </AnchorPane>
-            <SplitPane dividerPositions="0.44488977955911824" prefHeight="700.0" prefWidth="1000.0" stylesheets="@StyleSheets/Creator.css">
+            <SplitPane fx:id="splitPane" dividerPositions="0.44488977955911824" prefHeight="700.0" prefWidth="1000.0" stylesheets="@StyleSheets/Creator.css">
               <items>
                   <ScrollPane id="middle-panemiddle-pane" prefHeight="706.0" prefWidth="422.0" styleClass="middle-pane" stylesheets="@StyleSheets/Creator.css">
                      <content>
@@ -111,55 +150,16 @@
                   </ScrollPane>
                   <ScrollPane prefHeight="645.0" prefWidth="496.0" styleClass="text-area-pane" stylesheets="@StyleSheets/Creator.css">
                      <content>
-                        <AnchorPane prefHeight="697.0" prefWidth="495.0">
+                        <VBox fx:id="vBoxText">
                            <children>
-                              <TextArea layoutX="24.0" layoutY="38.0" prefHeight="651.0" prefWidth="448.0" />
+                              <TextArea fx:id="textArea" prefHeight="677.0" prefWidth="555.0" />
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </content>
                   </ScrollPane>
               </items>
             </SplitPane>
          </children>
       </HBox>
-       <MenuBar id="menuBar" fx:id="menuBar" centerShape="false" stylesheets="@StyleSheets/Creator.css" StackPane.alignment="TOP_CENTER" VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu fx:id="openRecentMenu" mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#saveFile" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
    </children>
-</StackPane>
+</VBox>

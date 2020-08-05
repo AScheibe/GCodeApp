@@ -18,10 +18,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import src.code.*;
 
 import src.util.TextFileManager;
@@ -49,6 +54,19 @@ public class CreatorController extends AbstractController {
     @FXML
     protected TitledPane mCodeListPane;
 
+    @FXML 
+    protected HBox hBox;
+
+    @FXML 
+    protected SplitPane splitPane;
+
+    @FXML 
+    protected VBox vBoxMain;
+
+    @FXML 
+    protected VBox vBoxText;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
@@ -59,6 +77,9 @@ public class CreatorController extends AbstractController {
         placeButtons();
         addSearchListener();
         setRecentFilesInMenuBar();
+        HBox.setHgrow(splitPane, Priority.ALWAYS);
+        vBoxMain.setVgrow(hBox, Priority.ALWAYS);
+        vBoxText.setVgrow(textArea, Priority.ALWAYS);
     }
 
     @FXML
