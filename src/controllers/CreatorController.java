@@ -11,9 +11,7 @@ import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
@@ -24,8 +22,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import src.code.*;
 
@@ -66,6 +64,9 @@ public class CreatorController extends AbstractController {
     @FXML 
     protected VBox vBoxText;
 
+    @FXML 
+    protected Pane textAreaPane;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,12 +77,24 @@ public class CreatorController extends AbstractController {
         setButtonEventHandlers();
         placeButtons();
         addSearchListener();
+        addResizeListeners();
         setRecentFilesInMenuBar();
+
+        textArea.setMinWidth(textAreaPane.getWidth());
+
         HBox.setHgrow(splitPane, Priority.ALWAYS);
-        vBoxMain.setVgrow(hBox, Priority.ALWAYS);
-        vBoxText.setVgrow(textArea, Priority.ALWAYS);
+        VBox.setVgrow(hBox, Priority.ALWAYS);
     }
 
+    public void addResizeListeners(){
+        vBoxMain.widthProperty().addListener((obs, oldVal, newVal) -> {
+            textArea.setMinWidth(textAreaPane.getWidth());
+       });
+       
+        vBoxMain.heightProperty().addListener((obs, oldVal, newVal) -> {
+        textArea.setMinHeight(textAreaPane.getHeight());
+       });
+    }
     @FXML
     public void saveFile(ActionEvent e) throws IOException {
         File file = TextFileManager.getTextFile();
@@ -256,32 +269,7 @@ public class CreatorController extends AbstractController {
         textArea.setText(text);
     }
 
-    private void correctDimensionsTextArea() {
-        Task<Void> task = new Task<Void>() {
 
-            @Override
-            protected Void call() throws Exception {
-                Platform.runLater(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) {
-                            System.out.println("Thread cannot sleep");
-                        }
-
-                        double ogTAWidth = textArea.getWidth();
-                        double ogTAHeight = textArea.getHeight();
-
-						
-					}
-                });
-				return null;
-			}
-            
-        };
-    }
     /**
      * NOT USED
      * 
@@ -289,7 +277,7 @@ public class CreatorController extends AbstractController {
      * reads.
      * 
      * The text file is displayed in this way in order to make the text file being
-     * edited save immediately with zero doubt that whats displayed in the file is
+     * edited save immediately w ith zero doubt that whats displayed in the file is
      * the same as what's being displayed on the screen. The individuals this
      * application is being made for may be very tecnologically illiterate.
      * 

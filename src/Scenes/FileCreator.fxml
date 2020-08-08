@@ -17,9 +17,9 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox fx:id="vBoxMain" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controllers.CreatorController">
    <children>
@@ -148,15 +148,11 @@
                         <Glow level="0.0" />
                      </effect>
                   </ScrollPane>
-                  <ScrollPane prefHeight="645.0" prefWidth="496.0" styleClass="text-area-pane" stylesheets="@StyleSheets/Creator.css">
-                     <content>
-                        <VBox fx:id="vBoxText">
-                           <children>
-                              <TextArea fx:id="textArea" prefHeight="677.0" prefWidth="555.0" />
-                           </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
+                  <Pane fx:id="textAreaPane">
+                     <children>
+                        <TextArea fx:id="textArea" prefHeight="693.0" prefWidth="550.0" />
+                     </children>
+                  </Pane>
               </items>
             </SplitPane>
          </children>

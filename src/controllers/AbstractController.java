@@ -31,6 +31,7 @@ public abstract class AbstractController implements Initializable {
 
     public static Stage CurrentStage;
 
+    
     /**
      * Opens the welcome stage and closes current stage
      * 
@@ -59,7 +60,7 @@ public abstract class AbstractController implements Initializable {
         if(TextFileManager.getTextFile().exists()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/FileCreator.fxml"));
             Parent root = (Parent) loader.load();
-            Scene maker = new Scene(root, 1000, 700);
+            Scene maker = new Scene(root, 1074, 700);
             Stage creatorStage = new Stage();
 
             creatorStage.setTitle("GCode Creator");
