@@ -14,12 +14,14 @@ import javafx.event.EventHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -67,6 +69,11 @@ public class CreatorController extends AbstractController {
     @FXML 
     protected Pane textAreaPane;
 
+    @FXML
+    protected Button editWindowButton;
+
+    @FXML  
+    protected Button deleteWindowButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,14 +102,25 @@ public class CreatorController extends AbstractController {
         textArea.setMinHeight(textAreaPane.getHeight());
        });
     }
+
     @FXML
     public void saveFile(ActionEvent e) throws IOException {
         File file = TextFileManager.getTextFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(file));
+
+        Alert fileSavedAlert = new Alert(AlertType.INFORMATION);
+        fileSavedAlert.setTitle("FILE SAVED");
+        fileSavedAlert.setHeaderText(TextFileManager.getTextFileShortHand() + " saved");
+        fileSavedAlert.setHeight(5);
+        fileSavedAlert.show();
+
         out.write(textArea.getText());
         out.close();
     }
 
+    //TODO
+    public void saveFileAs(ActionEvent e){}
+    
     /**
      * Adds a search listener that detects change in text in the search bar. The
      * listener in turn displays buttons ordered in alphabetical order.
@@ -202,8 +220,7 @@ public class CreatorController extends AbstractController {
                     String line = fileScanner.nextLine();
 
                     textArea.setText(currentText += line + "\n");
-                    originalText += line;
-
+                    originalText += line;   
                 }
             }
 
