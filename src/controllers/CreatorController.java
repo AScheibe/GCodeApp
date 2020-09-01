@@ -54,25 +54,25 @@ public class CreatorController extends AbstractController {
     @FXML
     protected TitledPane mCodeListPane;
 
-    @FXML 
+    @FXML
     protected HBox hBox;
 
-    @FXML 
+    @FXML
     protected SplitPane splitPane;
 
-    @FXML 
+    @FXML
     protected VBox vBoxMain;
 
-    @FXML 
+    @FXML
     protected VBox vBoxText;
 
-    @FXML 
+    @FXML
     protected Pane textAreaPane;
 
     @FXML
     protected Button editWindowButton;
 
-    @FXML  
+    @FXML
     protected Button deleteWindowButton;
 
     @Override
@@ -93,14 +93,23 @@ public class CreatorController extends AbstractController {
         VBox.setVgrow(hBox, Priority.ALWAYS);
     }
 
-    public void addResizeListeners(){
+    public void addResizeListeners() {
         vBoxMain.widthProperty().addListener((obs, oldVal, newVal) -> {
             textArea.setMinWidth(textAreaPane.getWidth());
-       });
-       
+        });
+
         vBoxMain.heightProperty().addListener((obs, oldVal, newVal) -> {
-        textArea.setMinHeight(textAreaPane.getHeight());
-       });
+            textArea.setMinHeight(textAreaPane.getHeight());
+        });
+    }
+
+    @FXML
+    public void deleteWindowButtonPressed() {
+        try {
+            changeScene(CurrentStage, "Scenes/Delete.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -126,7 +135,7 @@ public class CreatorController extends AbstractController {
      * listener in turn displays buttons ordered in alphabetical order.
      * 
      */
-    private void addSearchListener() {
+    protected void addSearchListener() {
         searchBar.textProperty().addListener((ChangeListener<String>) (ov, t, t1) -> {
             if (!(searchBar.getText().equals(" ") || searchBar.getText().equals("")
                     || searchBar.getText().substring(0).contains("  ")
@@ -162,7 +171,7 @@ public class CreatorController extends AbstractController {
      * be called after a search is made.
      * 
      */
-    private void placeButtons() {
+    protected void placeButtons() {
         GridPane gCodeButtonGrid = new GridPane();
         GridPane mCodeButtonGrid = new GridPane();
 
@@ -187,7 +196,7 @@ public class CreatorController extends AbstractController {
      * in the text file upon start up.
      * 
      */
-    private void setTextArea() {
+    protected void setTextArea() {
         String textToCheck = "";
         String originalText = "";
 
@@ -259,7 +268,7 @@ public class CreatorController extends AbstractController {
      * 
      * @return CodeBasic
      */
-    private CodeBasic parseButtonName(String buttonName) {
+    protected CodeBasic parseButtonName(String buttonName) {
         for (CodeBasic c : GCodes.values()) {
             if (buttonName.equals(c.getName()))
                 return c;
@@ -280,7 +289,7 @@ public class CreatorController extends AbstractController {
      * @param code
      * @throws FileNotFoundException
      */
-    private void writeCode(CodeBasic code) throws FileNotFoundException {
+    protected void writeCode(CodeBasic code) throws FileNotFoundException {
         String text = textArea.getText();
         text += "\n" + code.getAction();
         textArea.setText(text);
