@@ -39,7 +39,7 @@ public abstract class AbstractController implements Initializable {
     public void activateMainStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/Main.fxml"));
         Parent root = (Parent) loader.load();
-        Scene maker = new Scene(root, 647, 450);
+        Scene maker = new Scene(root, CurrentStage.getHeight(), CurrentStage.getWidth());
         Stage primaryStage = new Stage();
 
         primaryStage.setTitle("GCode Creator");
@@ -90,7 +90,7 @@ public abstract class AbstractController implements Initializable {
     public void changeScene(Stage currentStage, String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = (Parent) loader.load();
-        Scene scene = new Scene(root, 640, 400);
+        Scene scene = new Scene(root, CurrentStage.getWidth(), CurrentStage.getHeight());
 
         currentStage.setScene(scene);
     }

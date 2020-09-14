@@ -6,9 +6,10 @@ import java.util.ResourceBundle;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import src.util.TextFileManager;
 
 
-public class DeleteWindow extends CreatorController{
+public class DeleteWindowController extends CreatorController{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
@@ -25,8 +26,12 @@ public class DeleteWindow extends CreatorController{
 
         HBox.setHgrow(splitPane, Priority.ALWAYS);
         VBox.setVgrow(hBox, Priority.ALWAYS);
+        findLine();
     }
 
-
+    private void findLine(){
+        String text = TextFileManager.getTextFile().toString();
+        System.out.println(text);
+    }
     
 }

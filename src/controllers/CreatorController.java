@@ -74,7 +74,7 @@ public class CreatorController extends AbstractController {
 
     @FXML
     protected Button deleteWindowButton;
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
@@ -104,9 +104,9 @@ public class CreatorController extends AbstractController {
     }
 
     @FXML
-    public void deleteWindowButtonPressed() {
+    public void deleteWindowButtonPressed(ActionEvent event){
         try {
-            changeScene(CurrentStage, "Scenes/Delete.fxml");
+            changeScene(CurrentStage, "/src/Scenes/Delete.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }
