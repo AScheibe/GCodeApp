@@ -94,7 +94,7 @@ public class CreatorController extends AbstractController {
     }
 
     public void setLineNumbers(){
-        
+
     }
 
 
@@ -233,7 +233,12 @@ public class CreatorController extends AbstractController {
                     String currentText = textArea.getText();
                     String line = fileScanner.nextLine();
 
-                    textArea.setText(currentText += line + "\n");
+                    if(fileScanner.hasNextLine()){
+                        textArea.setText(currentText += line + "\n");
+                    }
+                    else{
+                        textArea.setText(currentText += line);
+                    }
                     originalText += line;   
                 }
             }
