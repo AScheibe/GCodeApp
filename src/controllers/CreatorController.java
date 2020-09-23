@@ -93,6 +93,11 @@ public class CreatorController extends AbstractController {
         VBox.setVgrow(hBox, Priority.ALWAYS);
     }
 
+    public void setLineNumbers(){
+        
+    }
+
+
     public void addResizeListeners() {
         vBoxMain.widthProperty().addListener((obs, oldVal, newVal) -> {
             textArea.setMinWidth(textAreaPane.getWidth());

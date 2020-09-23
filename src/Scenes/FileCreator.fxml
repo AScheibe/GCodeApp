@@ -150,7 +150,7 @@
                   </ScrollPane>
                   <Pane fx:id="textAreaPane">
                      <children>
-                        <TextArea fx:id="textArea" editable="false" prefHeight="698.0" prefWidth="554.0" />
+                        <TextArea fx:id="textArea" editable="false" layoutX="23.0" prefHeight="698.0" prefWidth="531.0" />
                      </children>
                   </Pane>
               </items>
