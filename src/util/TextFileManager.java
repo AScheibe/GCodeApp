@@ -8,8 +8,8 @@ import java.util.HashMap;
 public class TextFileManager {
     private static File textFile;
     private static String textFileShortHand;
-    private static int numLines = 0;
-    private static HashMap<Integer, String> textLinesMap = new HashMap<Integer, String>();
+    public static int NUM_LINES = 0;
+    public static HashMap<Integer, String> TEXT_LINES_MAP = new HashMap<Integer, String>();
 
     public static File getTextFile()
     {
@@ -34,15 +34,20 @@ public class TextFileManager {
         }
     }
 
+    public static void setNewMapValue(String newLineText){
+        NUM_LINES++;
+        TEXT_LINES_MAP.put(NUM_LINES, newLineText);
+    }
+
     private static void setLineNumbers() throws FileNotFoundException{
         int c = 1;
         Scanner inFile = new Scanner(textFile);
 
         while(inFile.hasNextLine()){
             String line = inFile.nextLine();
-            numLines = c;
-            textLinesMap.put(c, line);
-            System.out.println(textLinesMap.get(c));
+            NUM_LINES = c;
+            TEXT_LINES_MAP.put(c, line);
+            System.out.println(TEXT_LINES_MAP.get(c));
             c++;
         }
     }

@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -13,20 +15,28 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import src.code.*;
 
 import src.util.TextFileManager;
@@ -74,7 +84,10 @@ public class CreatorController extends AbstractController {
 
     @FXML
     protected Button deleteWindowButton;
-    
+
+    @FXML
+    protected TitledPane lineNumbersPane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
@@ -86,6 +99,7 @@ public class CreatorController extends AbstractController {
         addSearchListener();
         addResizeListeners();
         setRecentFilesInMenuBar();
+        setLineNumbers();
 
         textArea.setMinWidth(textAreaPane.getWidth());
 
@@ -93,10 +107,28 @@ public class CreatorController extends AbstractController {
         VBox.setVgrow(hBox, Priority.ALWAYS);
     }
 
-    public void setLineNumbers(){
+    public void setLineNumbers() {
+        GridPane lineNumbersGrid = new GridPane();
+
+        for (int num = 1; num <= TextFileManager.NUM_LINES; num++) {
+            Label numberLabel = new Label();
+            numberLabel.setFont(new Font("System", 13));
+
+            if (num == 1) {
+                numberLabel.setPadding(new Insets(5, 0, 0, 0));
+            }
+            if (num <= 9) {
+                numberLabel.setText("  " + Integer.toString(num));
+            } else {
+                numberLabel.setText(Integer.toString(num));
+            }
+
+            lineNumbersGrid.add(numberLabel, 0, num - 1);
+        }
+
+        lineNumbersPane.setContent(lineNumbersGrid);
 
     }
-
 
     public void addResizeListeners() {
         vBoxMain.widthProperty().addListener((obs, oldVal, newVal) -> {
@@ -109,7 +141,7 @@ public class CreatorController extends AbstractController {
     }
 
     @FXML
-    public void deleteWindowButtonPressed(ActionEvent event){
+    public void deleteWindowButtonPressed(ActionEvent event) {
         try {
             changeScene(CurrentStage, "/src/Scenes/Delete.fxml");
         } catch (Exception e) {
@@ -132,9 +164,10 @@ public class CreatorController extends AbstractController {
         out.close();
     }
 
-    //TODO
-    public void saveFileAs(ActionEvent e){}
-    
+    // TODO
+    public void saveFileAs(ActionEvent e) {
+    }
+
     /**
      * Adds a search listener that detects change in text in the search bar. The
      * listener in turn displays buttons ordered in alphabetical order.
@@ -202,51 +235,24 @@ public class CreatorController extends AbstractController {
      * 
      */
     protected void setTextArea() {
-        String textToCheck = "";
-        String originalText = "";
+        Map<Integer, String> linesMap = TextFileManager.TEXT_LINES_MAP;
+        String newText = "";
 
-        Scanner fileScanner;
-
-        File textFile = TextFileManager.getTextFile();
-
-        try {
-            fileScanner = new Scanner(textFile);
-
-            while (fileScanner.hasNextLine()) {
-                textToCheck += fileScanner.nextLine();
-            }
-            fileScanner.close();
-        } catch (Exception e) {
-            try {
-                activateMainStage();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+        for (int i = 1; i <= TextFileManager.NUM_LINES; i++) {
+            newText += linesMap.get(i) + "\n";
         }
 
-        try {
-            fileScanner = new Scanner(textFile);
-            if (!textToCheck.equals(originalText)) {
-                textArea.setText("");
-                while (fileScanner.hasNextLine()) {
-                    String currentText = textArea.getText();
-                    String line = fileScanner.nextLine();
+        if (TextFileManager.NUM_LINES > 41) {
+            double height = textArea.getPrefHeight() + 13;
 
-                    if(fileScanner.hasNextLine()){
-                        textArea.setText(currentText += line + "\n");
-                    }
-                    else{
-                        textArea.setText(currentText += line);
-                    }
-                    originalText += line;   
-                }
-            }
+            System.out.println(textArea.getPrefHeight());
+            System.out.println(height);
 
-            fileScanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            textAreaPane.setPrefHeight(height);
+            textArea.setPrefHeight(height);
         }
+
+        textArea.setText(newText);
     }
 
     /**
@@ -300,11 +306,10 @@ public class CreatorController extends AbstractController {
      * @throws FileNotFoundException
      */
     protected void writeCode(CodeBasic code) throws FileNotFoundException {
-        String text = textArea.getText();
-        text += "\n" + code.getAction();
-        textArea.setText(text);
+        TextFileManager.setNewMapValue(code.getAction());
+        setTextArea();
+        setLineNumbers();
     }
-
 
     /**
      * NOT USED

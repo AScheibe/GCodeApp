@@ -148,11 +148,29 @@
                         <Glow level="0.0" />
                      </effect>
                   </ScrollPane>
-                  <Pane fx:id="textAreaPane">
-                     <children>
-                        <TextArea fx:id="textArea" editable="false" layoutX="23.0" prefHeight="698.0" prefWidth="531.0" />
-                     </children>
-                  </Pane>
+                  <ScrollPane>
+                     <content>
+                        <Pane fx:id="textAreaPane" prefHeight="698.0" prefWidth="553.0" styleClass="right-anchor-pane">
+                           <children>
+                              <TextArea fx:id="textArea" focusTraversable="false" layoutX="17.0" prefHeight="700.0" prefWidth="537.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextArea>
+                              <TitledPane fx:id="lineNumbersPane" alignment="CENTER_RIGHT" animated="false" collapsible="false" layoutY="-2.0" prefHeight="700.0" prefWidth="20.0" styleClass="numbers-pane" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="1.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <effect>
+                                    <InnerShadow height="10.0" radius="4.5" width="10.0" />
+                                 </effect></TitledPane>
+                           </children>
+                        </Pane>
+                     </content>
+                  </ScrollPane>
               </items>
             </SplitPane>
          </children>

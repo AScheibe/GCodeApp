@@ -48,3 +48,20 @@
 .split-pane{
     -fx-background-color: #404042;
 }
+
+.right-anchor-pane{
+    -fx-background-color: rgb(37, 37, 38);
+}
+
+.numbers-pane > .title 
+{
+-fx-background-color: rgb(255, 255, 255);
+-fx-background-insets: 0, 0, 0;
+-fx-background-radius: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+-fx-padding: 0 0 0 0; /* 2 10 3 10 */
+}
+
+.text-area > .scroll-pane {
+    -fx-hbar-policy: never;
+    -fx-vbar-policy: never;
+}
