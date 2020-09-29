@@ -97,7 +97,6 @@ public class CreatorController extends AbstractController {
         setButtonEventHandlers();
         placeButtons();
         addSearchListener();
-        addResizeListeners();
         setRecentFilesInMenuBar();
         setLineNumbers();
 
@@ -127,7 +126,6 @@ public class CreatorController extends AbstractController {
         }
 
         lineNumbersPane.setContent(lineNumbersGrid);
-
     }
 
     public void addResizeListeners() {
@@ -235,6 +233,14 @@ public class CreatorController extends AbstractController {
      * 
      */
     protected void setTextArea() {
+
+        //Starting pref height at initalization is 700. 41 lines fit into this height.
+        int startingHeight = 700;
+        int startingNumLines = 40;
+        int sizeToIncreaseBy = 17;
+
+        int numLines = TextFileManager.NUM_LINES;
+
         Map<Integer, String> linesMap = TextFileManager.TEXT_LINES_MAP;
         String newText = "";
 
@@ -242,18 +248,38 @@ public class CreatorController extends AbstractController {
             newText += linesMap.get(i) + "\n";
         }
 
-        if (TextFileManager.NUM_LINES > 41) {
-            double height = textArea.getPrefHeight() + 13;
+        if(numLines > startingNumLines){
+            if(textArea.getPrefHeight() <= startingHeight) {
+                double height = textArea.getPrefHeight() + (sizeToIncreaseBy * (TextFileManager.NUM_LINES - startingNumLines) - 14);
 
-            System.out.println(textArea.getPrefHeight());
-            System.out.println(height);
+                System.out.println(textArea.getPrefHeight());
+                System.out.println(height);
 
-            textAreaPane.setPrefHeight(height);
-            textArea.setPrefHeight(height);
+                //Setting the Min height is redundant, but im doing it just
+                //for clarity sake
+                textAreaPane.setMinHeight(height);
+                textAreaPane.setPrefHeight(height);
+                textArea.setMinHeight(height);
+                textArea.setPrefHeight(height);
+            }
+            else{
+                double height = textArea.getPrefHeight() + sizeToIncreaseBy;
+
+                System.out.println(textArea.getPrefHeight());
+                System.out.println(height);
+
+                //Setting the Min height is redundant, but im doing it just
+                //for clarity sake
+                textAreaPane.setMinHeight(height);
+                textAreaPane.setPrefHeight(height);
+                textArea.setMinHeight(height);
+                textArea.setPrefHeight(height);
+                
+            }
         }
 
-        textArea.setText(newText);
-    }
+            textArea.setText(newText);
+        }
 
     /**
      * Sets the actions of each button to be used when writing out the GCode file.

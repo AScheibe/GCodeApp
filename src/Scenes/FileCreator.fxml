@@ -152,7 +152,7 @@
                      <content>
                         <Pane fx:id="textAreaPane" prefHeight="698.0" prefWidth="553.0" styleClass="right-anchor-pane">
                            <children>
-                              <TextArea fx:id="textArea" focusTraversable="false" layoutX="17.0" prefHeight="700.0" prefWidth="537.0">
+                              <TextArea fx:id="textArea" focusTraversable="false" layoutX="17.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="537.0" wrapText="true">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
