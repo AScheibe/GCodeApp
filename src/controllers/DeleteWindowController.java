@@ -1,8 +1,11 @@
 package src.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -29,6 +32,15 @@ public class DeleteWindowController extends CreatorController{
         findLine();
     }
 
+    @FXML
+    protected void openChatButtonPressed(ActionEvent e){
+        try {
+            activateChat();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+    
     private void findLine(){
         String text = TextFileManager.getTextFile().toString();
         System.out.println(text);

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollBar;
@@ -29,6 +31,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -44,49 +49,49 @@ import src.util.ButtonsUtil;
 
 public class CreatorController extends AbstractController {
     @FXML
-    protected MenuBar menuBar;
-
-    @FXML
-    protected TextField searchBar;
-
-    @FXML
-    protected TextArea textArea;
-
-    @FXML
-    protected Accordion buttonsPane;
-
-    @FXML
-    protected TitledPane resultsPane;
-
-    @FXML
-    protected TitledPane gCodeListPane;
-
-    @FXML
-    protected TitledPane mCodeListPane;
+    protected VBox vBoxMain;
 
     @FXML
     protected HBox hBox;
 
     @FXML
+    private Button deleteWindowButton;
+
+    @FXML
+    private Button openChatButton;
+
+    @FXML
     protected SplitPane splitPane;
 
     @FXML
-    protected VBox vBoxMain;
+    private TextField searchBar;
 
     @FXML
-    protected VBox vBoxText;
+    private Accordion buttonsPane;
+
+    @FXML
+    private TitledPane linesLP;
+
+    @FXML
+    private TitledPane arcsLP;
+
+    @FXML
+    private TitledPane twoDLP;
+
+    @FXML
+    private TitledPane utilLP;
+
+    @FXML
+    private TitledPane resultsPane;
 
     @FXML
     protected Pane textAreaPane;
 
     @FXML
-    protected Button editWindowButton;
+    protected TextArea textArea;
 
     @FXML
-    protected Button deleteWindowButton;
-
-    @FXML
-    protected TitledPane lineNumbersPane;
+    private TitledPane lineNumbersPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -112,6 +117,39 @@ public class CreatorController extends AbstractController {
         for (int num = 1; num <= TextFileManager.NUM_LINES; num++) {
             Label numberLabel = new Label();
             numberLabel.setFont(new Font("System", 13));
+
+            numberLabel.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    numberLabel.setStyle("-fx-background-color:rgba(170, 0, 0, 0.7)");
+
+                    Alert alert = new Alert(AlertType.WARNING, "", ButtonType.YES, ButtonType.NO);
+                    alert.setTitle("DELETE");
+                    alert.setContentText("DELETE LINE " + numberLabel.getText().trim() + "?");
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                    if (result.get() == ButtonType.YES) {
+                        try {
+                            TextFileManager.removeLine(Integer.parseInt(numberLabel.getText().trim()));
+                            Alert a = new Alert(AlertType.INFORMATION);
+                            a.setTitle("LINE DELETED");
+                            a.setContentText("DELETED LINE " + numberLabel.getText().trim() + ".");
+                            setTextArea();
+                            setLineNumbers();
+                            a.showAndWait();
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Alert a = new Alert(AlertType.INFORMATION);
+                        a.setTitle("LINE NOT DELETED");
+                        a.setContentText("LINE " + numberLabel.getText().trim() + " NOT DELETED");
+                        a.showAndWait();
+                        numberLabel.setStyle("-fx-background-color:rgba(0, 0, 0,0.0)");
+                    }
+
+                }
+            });
 
             if (num == 1) {
                 numberLabel.setPadding(new Insets(5, 0, 0, 0));
@@ -166,6 +204,15 @@ public class CreatorController extends AbstractController {
     public void saveFileAs(ActionEvent e) {
     }
 
+    @FXML
+    protected void openChatButtonPressed(ActionEvent e) {
+        try {
+            activateChat();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
     /**
      * Adds a search listener that detects change in text in the search bar. The
      * listener in turn displays buttons ordered in alphabetical order.
@@ -208,23 +255,26 @@ public class CreatorController extends AbstractController {
      * 
      */
     protected void placeButtons() {
-        GridPane gCodeButtonGrid = new GridPane();
-        GridPane mCodeButtonGrid = new GridPane();
+        GridPane linesGrid = new GridPane();
+        GridPane arcsGrid = new GridPane();
+        GridPane twoDGrid = new GridPane();
+        GridPane utilGrid = new GridPane();
+        GridPane miscGrid = new GridPane();
 
         int count = 0;
-        for (Button b : ButtonsUtil.GCODE_LIST) {
-            gCodeButtonGrid.add(b, 0, count);
+        for (Button b : ButtonsUtil.LINES_LIST) {
+            linesGrid.add(b, 0, count);
             count++;
         }
 
         count = 0;
-        for (Button b : ButtonsUtil.MCODE_LIST) {
-            mCodeButtonGrid.add(b, 0, count);
+        for (Button b : ButtonsUtil.ARCS_LIST) {
+            arcsGrid.add(b, 0, count);
             count++;
         }
 
-        gCodeListPane.setContent(gCodeButtonGrid);
-        mCodeListPane.setContent(mCodeButtonGrid);
+        linesLP.setContent(linesGrid);
+        arcsLP.setContent(arcsGrid);
     }
 
     /**
@@ -234,7 +284,7 @@ public class CreatorController extends AbstractController {
      */
     protected void setTextArea() {
 
-        //Starting pref height at initalization is 700. 41 lines fit into this height.
+        // Starting pref height at initalization is 700. 41 lines fit into this height.
         int startingHeight = 700;
         int startingNumLines = 40;
         int sizeToIncreaseBy = 17;
@@ -248,38 +298,38 @@ public class CreatorController extends AbstractController {
             newText += linesMap.get(i) + "\n";
         }
 
-        if(numLines > startingNumLines){
-            if(textArea.getPrefHeight() <= startingHeight) {
-                double height = textArea.getPrefHeight() + (sizeToIncreaseBy * (TextFileManager.NUM_LINES - startingNumLines) - 14);
+        if (numLines > startingNumLines) {
+            if (textArea.getPrefHeight() <= startingHeight) {
+                double height = textArea.getPrefHeight()
+                        + (sizeToIncreaseBy * (TextFileManager.NUM_LINES - startingNumLines) - 14);
 
                 System.out.println(textArea.getPrefHeight());
                 System.out.println(height);
 
-                //Setting the Min height is redundant, but im doing it just
-                //for clarity sake
+                // Setting the Min height is redundant, but im doing it just
+                // for clarity sake
                 textAreaPane.setMinHeight(height);
                 textAreaPane.setPrefHeight(height);
                 textArea.setMinHeight(height);
                 textArea.setPrefHeight(height);
-            }
-            else{
+            } else {
                 double height = textArea.getPrefHeight() + sizeToIncreaseBy;
 
                 System.out.println(textArea.getPrefHeight());
                 System.out.println(height);
 
-                //Setting the Min height is redundant, but im doing it just
-                //for clarity sake
+                // Setting the Min height is redundant, but im doing it just
+                // for clarity sake
                 textAreaPane.setMinHeight(height);
                 textAreaPane.setPrefHeight(height);
                 textArea.setMinHeight(height);
                 textArea.setPrefHeight(height);
-                
+
             }
         }
 
-            textArea.setText(newText);
-        }
+        textArea.setText(newText);
+    }
 
     /**
      * Sets the actions of each button to be used when writing out the GCode file.

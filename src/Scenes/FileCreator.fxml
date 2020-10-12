@@ -76,7 +76,7 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <Button layoutX="7.0" layoutY="220.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="60.0" text="AI Chat">
+                  <Button fx:id="openChatButton" layoutX="7.0" layoutY="220.0" mnemonicParsing="false" onAction="#openChatButtonPressed" prefHeight="46.0" prefWidth="60.0" text="AI Chat">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -107,20 +107,30 @@
                               </TextField>
                               <Accordion id="accordionPane" fx:id="buttonsPane" layoutX="36.0" layoutY="108.0" prefHeight="82.0" prefWidth="352.0" styleClass="accordionPane" stylesheets="@StyleSheets/Creator.css" AnchorPane.leftAnchor="36.0">
                                 <panes>
-                                  <TitledPane fx:id="gCodeListPane" animated="false" prefHeight="350.0" prefWidth="369.0" styleClass="accordionPane" text="GCode" textFill="WHITE">
+                                  <TitledPane fx:id="linesLP" animated="false" prefHeight="350.0" prefWidth="369.0" styleClass="accordionPane" text="Lines" textFill="WHITE">
                                        <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="322.0" prefWidth="355.0" styleClass="buttonsAnchorPane" stylesheets="@StyleSheets/Creator.css" />
                                        </content>
                                   </TitledPane>
-                                    <TitledPane fx:id="mCodeListPane" animated="false" layoutX="10.0" layoutY="10.0" prefHeight="350.0" prefWidth="366.0" styleClass="accordionPane" text="MCode" textFill="WHITE">
+                                    <TitledPane fx:id="arcsLP" animated="false" layoutX="10.0" layoutY="10.0" prefHeight="350.0" prefWidth="366.0" styleClass="accordionPane" text="Arcs" textFill="WHITE">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="269.0" styleClass="buttonsAnchorPane" />
                                        </content>
                                     </TitledPane>
-                                    <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" styleClass="accordionPane" text="untitled 1" textFill="WHITE">
+                                    <TitledPane fx:id="twoDLP" animated="false" layoutX="10.0" layoutY="10.0" prefHeight="160.0" prefWidth="78.0" styleClass="accordionPane" text="2D Shapes" textFill="WHITE">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="337.0" prefWidth="380.0" styleClass="buttonsAnchorPane" />
                                        </content>
+                                    </TitledPane>
+                                    <TitledPane fx:id="utilLP" animated="false" text="Utilities">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" text="Misc.">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
                                     </TitledPane>
                                 </panes>
                                  <padding>

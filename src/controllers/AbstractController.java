@@ -80,6 +80,18 @@ public abstract class AbstractController implements Initializable {
         }
     }
 
+    public void activateChat() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/Chat.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene chat = new Scene(root, 500, 350);
+        Stage chatStage = new Stage();
+
+        chatStage.setTitle("GCode Chat");
+        chatStage.setScene(chat);
+
+        chatStage.show();
+    }
+
     /**
      * Changes the scene to the specefied fxml file
      *

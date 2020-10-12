@@ -51,5 +51,19 @@ public class TextFileManager {
             c++;
         }
     }
+
+    public static void removeLine(int lineNum){
+        if(lineNum == TEXT_LINES_MAP.size()){
+            TEXT_LINES_MAP.remove(lineNum);
+            NUM_LINES--;
+        }
+        else{
+            for(int i = lineNum; i < TEXT_LINES_MAP.size(); i++){
+                TEXT_LINES_MAP.remove(i);
+                TEXT_LINES_MAP.put(i, TEXT_LINES_MAP.get(i + 1));
+            }
+            NUM_LINES--;
+        }
+    }
     
 }
