@@ -1,17 +1,20 @@
 package src.chat;
 
+import java.util.ArrayList;
+
 public class ChatRunner {
-    private String text;
-    private String output;
+    private String inputText;
+    private String outputText;
+    private ArrayList<String> validWords;
 
     public ChatRunner(){
-        text = "";
+        inputText = "";
     }
 
     //TODO
-    public void setInput(String text){
-        this.text = text; 
-
+    public void setInput(String inputText){
+        this.inputText = inputText; 
+        figureOutput();
     }
 
     //TODO
@@ -20,12 +23,7 @@ public class ChatRunner {
     }
 
     private void figureOutput(){
-        boolean active = true;
-        
-        while(active){
-            
-        };
-        
+        validWords = Parser.parse(inputText);
     }
 
 
