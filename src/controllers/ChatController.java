@@ -1,7 +1,5 @@
 package src.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -15,15 +13,14 @@ public class ChatController {
     @FXML
     TextField textField;
     
-    private ChatRunner chatRunner;
-
-    public void initialize(URL location, ResourceBundle resources) {
-        chatRunner = new ChatRunner();
-    }
+    private static ChatRunner chatRunner = new ChatRunner();
 
     @FXML
     protected void onTextInput(){
-        chatRunner.setInput(textField.getText());
+        String inputText = textField.getText();
+
+        chatRunner.setInput(inputText);
         textArea.setText(chatRunner.getOutput());
+        textField.clear();
     }
 }

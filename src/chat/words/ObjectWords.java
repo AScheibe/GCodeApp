@@ -1,7 +1,7 @@
 package src.chat.words;
 
 public enum ObjectWords implements Words{
-    o1("line"), o2("arc"), o3("circle"), o4("rectangle");
+    line("line"), arc("arc"), circle("circle"), rectangle("rectangle");
 
     private String word;
 

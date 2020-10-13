@@ -1,7 +1,7 @@
 package src.chat.words;
 
 public enum QuestionWords implements Words{
-   q1("how"), q2("what"), q3("where"), q4("why");
+   how("how"), what("what"), where("where"), why("why");
 
     private String word;
 
