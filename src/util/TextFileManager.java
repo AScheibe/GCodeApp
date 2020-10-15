@@ -28,7 +28,7 @@ public class TextFileManager {
         textFileShortHand = file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf("/") + 1);
 
         try {
-            setLineNumbers();
+            setLines();
         } catch (Exception e) {
             //TODO: handle exception
         }
@@ -39,7 +39,7 @@ public class TextFileManager {
         TEXT_LINES_MAP.put(NUM_LINES, newLineText);
     }
 
-    private static void setLineNumbers() throws FileNotFoundException{
+    private static void setLines() throws FileNotFoundException{
         int c = 1;
         Scanner inFile = new Scanner(textFile);
 
@@ -50,6 +50,25 @@ public class TextFileManager {
             System.out.println(TEXT_LINES_MAP.get(c));
             c++;
         }
+    }
+
+    public static void setHeader(String projectTitle, String name, String date){
+        HashMap<Integer, String> ogMap = new HashMap<Integer, String>(TEXT_LINES_MAP);
+
+        TEXT_LINES_MAP.put(1, projectTitle);
+        TEXT_LINES_MAP.put(2, name);
+        TEXT_LINES_MAP.put(3, date);
+        TEXT_LINES_MAP.put(4, "(Created with: FREEDOM HS SPARKS)");
+        
+        System.out.println(TEXT_LINES_MAP.size());
+
+        if(ogMap.size() > 0){
+            for(int i = 5; i <= ogMap.size() + 4; i++){
+                TEXT_LINES_MAP.put(i, ogMap.get(i - 4));
+            }
+        }
+
+        NUM_LINES = TEXT_LINES_MAP.size();
     }
 
     public static void removeLine(int lineNum){

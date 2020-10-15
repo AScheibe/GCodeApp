@@ -48,7 +48,7 @@ public class Main extends Application {
         primaryStage.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                AbstractController.CurrentStage = primaryStage;
+                AbstractController.current_stage = primaryStage;
             }
         });
 

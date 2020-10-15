@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,19 +13,12 @@
          <children>
             <SplitPane fx:id="splitPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@StyleSheets/Creator.css">
               <items>
-                  <ScrollPane id="middle-panemiddle-pane" prefHeight="706.0" prefWidth="422.0" styleClass="middle-pane" stylesheets="@StyleSheets/Creator.css">
-                     <content>
-                      <AnchorPane id="middle-pane" minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="548.0" styleClass="middle-pane" stylesheets="@StyleSheets/Creator.css">
-                           <children>
-                              <TextField fx:id="textField" layoutX="96.0" layoutY="297.0" onAction="#onTextInput" prefHeight="37.0" prefWidth="357.0" promptText="Type query then press 'Enter'" />
-                              <TextArea fx:id="textArea" editable="false" layoutX="97.0" layoutY="14.0" prefHeight="267.0" prefWidth="355.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                     <effect>
-                        <Glow level="0.0" />
-                     </effect>
-                  </ScrollPane>
+                <AnchorPane id="middle-pane" minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="548.0" styleClass="middle-pane" stylesheets="@StyleSheets/Creator.css">
+                     <children>
+                        <TextField fx:id="textField" layoutX="96.0" layoutY="297.0" onAction="#onTextInput" prefHeight="37.0" prefWidth="357.0" promptText="Type query then press 'Enter'" />
+                        <TextArea fx:id="textArea" editable="false" layoutX="97.0" layoutY="14.0" prefHeight="267.0" prefWidth="355.0" wrapText="true" />
+                     </children>
+                  </AnchorPane>
               </items>
             </SplitPane>
          </children>

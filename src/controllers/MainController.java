@@ -3,6 +3,9 @@ package src.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,6 +74,11 @@ public class MainController extends AbstractController {
 
         TextFileManager.setTextFile(file);
         RecentFilesUtil.putRecentFile(file.getAbsolutePath());
+        
+        if(checkHeader() == false){
+            return;
+        }
+
         activateCreatorController();
     }
 
@@ -85,6 +93,11 @@ public class MainController extends AbstractController {
         file = newFileSetup();
         TextFileManager.setTextFile(file);
         RecentFilesUtil.putRecentFile(file.getAbsolutePath());
+
+        if(checkHeader() == false){
+            return;
+        }
+
         activateCreatorController();
     }
 
@@ -119,7 +132,7 @@ public class MainController extends AbstractController {
 
                 while (checkNull) {
                     DirectoryChooser directoryChooser = new DirectoryChooser();
-                    selectedDirectory = directoryChooser.showDialog(CurrentStage);
+                    selectedDirectory = directoryChooser.showDialog(current_stage);
                     if (selectedDirectory == null) {
                         return null;
                     } else {
@@ -166,7 +179,7 @@ public class MainController extends AbstractController {
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
 
-        File selectedFile = fileChooser.showOpenDialog(CurrentStage);
+        File selectedFile = fileChooser.showOpenDialog(current_stage);
 
         return selectedFile;
     }
@@ -184,15 +197,61 @@ public class MainController extends AbstractController {
                 File file = new File(rFList.get(index));
                 TextFileManager.setTextFile(file);
                 try {
+                    if(checkHeader() == false){
+                        return;
+                    }
                     activateCreatorController();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                RecentFilesUtil.putRecentFile(file.getAbsolutePath());
             });
 
             filesGridPane.add(fileName, 0, i);
         }
 
         recentTitledPane.setContent(filesGridPane);
+    }
+
+    public boolean checkHeader() {
+        HashMap<Integer, String> textMap = new HashMap<Integer, String>(TextFileManager.TEXT_LINES_MAP);
+
+        if(textMap.size() == 0){
+            return formHeader();
+        }
+        else if(!textMap.get(1).contains("(Project: ")) {
+            return formHeader();
+        }
+
+        return true;
+    }
+
+    public boolean formHeader(){
+        TextInputDialog td = new TextInputDialog();
+        td.setContentText("Enter Title For Project: ");
+        td.showAndWait();
+        td.close();
+
+        String projectTitle = "(Project: " + td.getResult() + ")";
+
+        TextInputDialog td2 = new TextInputDialog();
+        td2.setContentText("Enter Your Name: ");
+        td2.showAndWait();
+        td2.close();
+
+        String name = td2.getResult();
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date date = new Date();
+        System.out.println(formatter.format(date));
+
+        name = "(Created by: " + name + ")";
+        String dateStr = "(Created on: " + date + ")";
+
+        if(name.contains("null") || projectTitle.contains("null")){
+            return false;
+        }
+
+        TextFileManager.setHeader(projectTitle, name, dateStr);
+        return true;
     }
 }

@@ -29,7 +29,7 @@ public abstract class AbstractController implements Initializable {
     @FXML
     protected Menu openRecentMenu;
 
-    public static Stage CurrentStage;
+    public static Stage current_stage;
 
     
     /**
@@ -39,14 +39,14 @@ public abstract class AbstractController implements Initializable {
     public void activateMainStage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/src/Scenes/Main.fxml"));
         Parent root = (Parent) loader.load();
-        Scene maker = new Scene(root, CurrentStage.getHeight(), CurrentStage.getWidth());
+        Scene maker = new Scene(root, current_stage.getHeight(), current_stage.getWidth());
         Stage primaryStage = new Stage();
 
         primaryStage.setTitle("GCode Creator");
         primaryStage.setScene(maker);
         primaryStage.setResizable(false);
         primaryStage.show();
-        CurrentStage = primaryStage;
+        current_stage = primaryStage;
     }
 
     /**
@@ -68,8 +68,8 @@ public abstract class AbstractController implements Initializable {
 
             creatorStage.show();
 
-            CurrentStage.close();
-            CurrentStage = creatorStage;
+            current_stage.close();
+            current_stage = creatorStage;
         }
         else{
             Alert alert = new Alert(AlertType.ERROR);
@@ -102,7 +102,7 @@ public abstract class AbstractController implements Initializable {
     public void changeScene(Stage currentStage, String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = (Parent) loader.load();
-        Scene scene = new Scene(root, CurrentStage.getWidth(), CurrentStage.getHeight());
+        Scene scene = new Scene(root, current_stage.getWidth(), current_stage.getHeight());
 
         currentStage.setScene(scene);
     }

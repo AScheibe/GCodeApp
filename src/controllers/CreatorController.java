@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -28,6 +30,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -97,7 +100,7 @@ public class CreatorController extends AbstractController {
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
-
+                
         setTextArea();
         setButtonEventHandlers();
         placeButtons();
@@ -110,6 +113,7 @@ public class CreatorController extends AbstractController {
         HBox.setHgrow(splitPane, Priority.ALWAYS);
         VBox.setVgrow(hBox, Priority.ALWAYS);
     }
+
 
     public void setLineNumbers() {
         GridPane lineNumbersGrid = new GridPane();
@@ -179,7 +183,7 @@ public class CreatorController extends AbstractController {
     @FXML
     public void deleteWindowButtonPressed(ActionEvent event) {
         try {
-            changeScene(CurrentStage, "/src/Scenes/Delete.fxml");
+            changeScene(current_stage, "/src/Scenes/Delete.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

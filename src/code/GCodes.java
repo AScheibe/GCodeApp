@@ -1,7 +1,7 @@
 package src.code;
 
 public enum GCodes implements CodeBasic{
-    G1("G1"), G2("G2"), G3("G3"), G4("G4");
+    HL("Horizontal Line"), VL("Vertical Line"), G3("G3"), G4("G4");
 
     private String name;
 
