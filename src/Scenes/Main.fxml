@@ -37,7 +37,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label alignment="CENTER" layoutX="97.0" layoutY="103.0" prefHeight="77.0" prefWidth="299.0" text="SPARKS (Pre-Alpha)" textAlignment="CENTER" textFill="#fffdfd">
+                  <Label alignment="CENTER" layoutX="97.0" layoutY="103.0" prefHeight="77.0" prefWidth="299.0" text="SPARKS" textAlignment="CENTER" textFill="#fffdfd">
                      <font>
                         <Font name="SansSerif Bold" size="26.0" />
                      </font>

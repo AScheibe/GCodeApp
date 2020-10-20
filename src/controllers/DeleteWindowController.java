@@ -19,9 +19,6 @@ public class DeleteWindowController extends CreatorController{
                 System.getProperty("os.name") != null && System.getProperty("os.name").startsWith("Mac"));
 
         setTextArea();
-        setButtonEventHandlers();
-        placeButtons();
-        addSearchListener();
         addResizeListeners();
         setRecentFilesInMenuBar();
 

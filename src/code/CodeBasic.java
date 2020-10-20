@@ -2,5 +2,5 @@ package src.code;
 
 public interface CodeBasic {
     public String getName();
-    public String getAction();
+    public int getAction();
 }

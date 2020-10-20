@@ -48,6 +48,8 @@ import javafx.scene.text.TextAlignment;
 import src.code.*;
 
 import src.util.TextFileManager;
+import src.util.TextInputUtil;
+import src.util.AlertUtil;
 import src.util.ButtonsUtil;
 
 public class CreatorController extends AbstractController {
@@ -96,6 +98,15 @@ public class CreatorController extends AbstractController {
     @FXML
     private TitledPane lineNumbersPane;
 
+    @FXML
+    private Button addCommentButton;
+
+    @FXML
+    private Button addSpaceButton;
+
+    @FXML
+    private Button endProgramButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBar.setUseSystemMenuBar(
@@ -112,6 +123,7 @@ public class CreatorController extends AbstractController {
 
         HBox.setHgrow(splitPane, Priority.ALWAYS);
         VBox.setVgrow(hBox, Priority.ALWAYS);
+        AlertUtil.alertRunner(AlertType.INFORMATION, "G30", "Remember, all measurements are in relation to the value of G30. Please set value of G30 using dial.");
     }
 
 
@@ -217,6 +229,40 @@ public class CreatorController extends AbstractController {
         }
     }
 
+    @FXML
+    protected void addCommentPressed(){
+        String comment = TextInputUtil.textInputRunner("Enter comment: ");
+        comment = "(" + comment + ")";
+        TextFileManager.setNewMapValue(comment);
+        setTextArea();
+        setLineNumbers();
+    }
+
+    @FXML
+    protected void addSpacePressed(){
+        TextFileManager.setNewMapValue("");
+        setTextArea();
+        setLineNumbers();
+    }
+
+    @FXML
+    protected void endProgramPressed(){
+        Alert a = new Alert(AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);
+        a.setTitle("Confirm End Program");
+        a.setContentText("Are you sure you want to end the program?");
+        a.showAndWait();
+    
+        if(a.getResult().equals(ButtonType.YES)){
+            TextFileManager.setNewMapValue("M9 (Coolant OFF)");
+            TextFileManager.setNewMapValue("M5 (Spindle OFF)");
+            TextFileManager.setNewMapValue("G30 Z 0.2 (Go in Z only to preset G30 location)");
+            TextFileManager.setNewMapValue("G30 (Go to preset G30 location)");
+            TextFileManager.setNewMapValue("M30 (End of Program)");
+            setTextArea();
+            setLineNumbers(); 
+        }
+    }
+
     /**
      * Adds a search listener that detects change in text in the search bar. The
      * listener in turn displays buttons ordered in alphabetical order.
@@ -260,10 +306,9 @@ public class CreatorController extends AbstractController {
      */
     protected void placeButtons() {
         GridPane linesGrid = new GridPane();
-        GridPane arcsGrid = new GridPane();
         GridPane twoDGrid = new GridPane();
         GridPane utilGrid = new GridPane();
-        GridPane miscGrid = new GridPane();
+        //GridPane miscGrid = new GridPane();
 
         int count = 0;
         for (Button b : ButtonsUtil.LINES_LIST) {
@@ -272,13 +317,20 @@ public class CreatorController extends AbstractController {
         }
 
         count = 0;
-        for (Button b : ButtonsUtil.ARCS_LIST) {
-            arcsGrid.add(b, 0, count);
+        for (Button b : ButtonsUtil.TWO_D_SHAPES_LIST) {
+            twoDGrid.add(b, 0, count);
+            count++;
+        }
+
+        count = 0;
+        for (Button b : ButtonsUtil.UTIL_LIST) {
+            utilGrid.add(b, 0, count);
             count++;
         }
 
         linesLP.setContent(linesGrid);
-        arcsLP.setContent(arcsGrid);
+        twoDLP.setContent(twoDGrid);
+        utilLP.setContent(utilGrid);
     }
 
     /**
@@ -365,12 +417,7 @@ public class CreatorController extends AbstractController {
      * @return CodeBasic
      */
     protected CodeBasic parseButtonName(String buttonName) {
-        for (CodeBasic c : GCodes.values()) {
-            if (buttonName.equals(c.getName()))
-                return c;
-        }
-
-        for (CodeBasic c : MCodes.values()) {
+        for (CodeBasic c : Codes.values()) {
             if (buttonName.equals(c.getName()))
                 return c;
         }
@@ -386,7 +433,7 @@ public class CreatorController extends AbstractController {
      * @throws FileNotFoundException
      */
     protected void writeCode(CodeBasic code) throws FileNotFoundException {
-        TextFileManager.setNewMapValue(code.getAction());
+        TextFileManager.setNewMapValue(CodeActions.lineParams(code.getAction()));
         setTextArea();
         setLineNumbers();
     }

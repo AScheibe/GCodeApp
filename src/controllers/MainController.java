@@ -9,8 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import src.util.AlertUtil;
 import src.util.RecentFilesUtil;
 import src.util.TextFileManager;
+import src.util.TextInputUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -126,7 +128,7 @@ public class MainController extends AbstractController {
             String fileName = td.getResult();
 
             if (fileName != null) {
-                File selectedDirectory = new File("foo.txt"); // must be initalized in order to avoid errors in code
+                File selectedDirectory = new File("foo.ngc"); // must be initalized in order to avoid errors in code
                                                               // below
                 boolean checkNull = true;
 
@@ -141,7 +143,7 @@ public class MainController extends AbstractController {
                     }
                 }
 
-                File file = new File(selectedDirectory.getAbsolutePath() + "/" + fileName + ".txt");
+                File file = new File(selectedDirectory.getAbsolutePath() + "/" + fileName + ".ngc");
 
                 // Error management
                 if (!file.exists() && !file.getAbsolutePath().contains("null")) {
@@ -153,16 +155,9 @@ public class MainController extends AbstractController {
                         e.printStackTrace();
                     }
                 } else if (file.getAbsolutePath().contains("null")) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("ERROR MESSAGE");
-                    alert.setContentText("ERROR: File Name OR Directory Not Specified");
-                    alert.showAndWait();
+                    AlertUtil.alertRunner(AlertType.ERROR, "ERROR MESSAGE", "ERROR: FILE NAME OR DIRECTORY NOT SPECIFIED");
                 } else {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("ERROR MESSAGE");
-                    alert.setContentText("ERROR: File Already Created");
-                    alert.showAndWait();
-
+                    AlertUtil.alertRunner(AlertType.ERROR, "ERROR MESSAGE", "ERROR: FILE ALREADY CREATED");
                 }
             } else {
                 break;
@@ -177,7 +172,7 @@ public class MainController extends AbstractController {
     private File editFileSetUp() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.ngc"));
 
         File selectedFile = fileChooser.showOpenDialog(current_stage);
 
@@ -227,31 +222,56 @@ public class MainController extends AbstractController {
     }
 
     public boolean formHeader(){
-        TextInputDialog td = new TextInputDialog();
-        td.setContentText("Enter Title For Project: ");
-        td.showAndWait();
-        td.close();
+        String projectTitle = TextInputUtil.textInputRunner("Enter Title For Project: ");
+        projectTitle = "(Project: " + projectTitle + ")";
 
-        String projectTitle = "(Project: " + td.getResult() + ")";
-
-        TextInputDialog td2 = new TextInputDialog();
-        td2.setContentText("Enter Your Name: ");
-        td2.showAndWait();
-        td2.close();
-
-        String name = td2.getResult();
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        Date date = new Date();
-        System.out.println(formatter.format(date));
-
+        String name = TextInputUtil.textInputRunner("Enter Your Name: ");
         name = "(Created by: " + name + ")";
-        String dateStr = "(Created on: " + date + ")";
 
-        if(name.contains("null") || projectTitle.contains("null")){
-            return false;
+
+        String spinRateStr = "";
+        double spinRate = 0;
+
+        boolean dblCheck = false;
+        while(!dblCheck){
+            String spinRateStr2 = TextInputUtil.textInputRunner("Enter Spindle Spin Rate (RPM): ");
+
+            try {
+                spinRate = Double.parseDouble(spinRateStr2);
+                dblCheck = true;
+            } catch (Exception e) {
+                AlertUtil.alertRunner(AlertType.ERROR, "ERROR MESSAGE", "ERROR: Spin Rate Must Expressed As A Decimal or Integer");
+                dblCheck = false;
+            }
         }
 
-        TextFileManager.setHeader(projectTitle, name, dateStr);
-        return true;
+        String feedRateStr = "";
+        double feedRate = 0;
+
+        dblCheck = false;
+        while(!dblCheck){
+            String feedRateStr2 = TextInputUtil.textInputRunner("Enter Feed Rate (IN/MIN): ");
+            try {
+                feedRate = Double.parseDouble(feedRateStr2);
+                dblCheck = true;
+            } catch (Exception e) {
+                AlertUtil.alertRunner(AlertType.ERROR, "ERROR MESSAGE", "ERROR: Feed Rate Must Expressed As A Decimal or Integer");
+            }
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date date = new Date();
+        String dateStr = "(Created on: " + formatter.format(date) + ")";
+
+        spinRateStr = "S " + spinRate + " (RPM)";
+        feedRateStr = "F " + feedRate + " (Feed, inches/minute)";
+
+        if(name.contains("null") || projectTitle.contains("null") || spinRateStr.contains("null") || feedRateStr.contains("null")){
+            return false;
+        }
+        else{
+            TextFileManager.setHeader(projectTitle, name, dateStr, spinRateStr, feedRateStr);
+            return true;
+        }
     }
 }
